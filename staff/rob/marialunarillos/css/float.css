@@ -1,0 +1,63 @@
+
+.divFloat img {
+  width: 100%;
+  height: 100%;
+}
+
+.divFloat {
+  justify-content: center;
+  align-items: center;
+
+  margin-left: 5vw;
+  margin-right: 5vw;
+  
+}
+
+.divFloat > div {
+  align-self: start;
+  float: left;
+  padding: 5px;
+}
+
+.divFloat > div.tright {
+  align-self: start;
+  float: right;
+}
+
+.divFloat .rowx {
+  height: 200px;
+  min-height: 150px;
+}
+
+.divFloat .row2x {
+  height: 400px;
+  min-height: 300px;
+}
+
+.divFloat .colx {
+  width: 34%;
+}
+
+.divFloat .col2x {
+  width: 66%;
+}
+
+@media only screen and (max-width: 600px) {
+  .divFloat .rowx {
+    height: 137px;
+    min-height: 137px;
+  }
+
+  .divFloat .row2x {
+    height: 137px;
+    min-height: 137px;
+  }
+
+  .divFloat .colx {
+    width: 100%;
+  }
+
+  .divFloat .col2x {
+    width: 100%;
+  }
+}

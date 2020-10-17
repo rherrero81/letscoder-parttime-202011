@@ -1,0 +1,60 @@
+.body {
+  margin: 0px !important;
+}
+.generalContainer {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+
+.facebook {
+  background-image: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg);
+
+  background-origin: padding-box;
+  background-position-x: -4px;
+  background-position-y: -54;
+}
+
+.secondContainer {
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f8f8;
+}
+.generalContainer > div {
+}
+
+.title {
+  display: block;
+  width: 218px;
+  text-align: center;
+  margin: 0 auto;
+  border-top: 2px solid #2e2925;
+  border-bottom: 2px solid #2e2925;
+}
+.containerUtlis
+{
+  display:flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 5vw;;
+}
+
+.iUtilsabs {
+  position: relative;
+  top: 60px;
+}
+.divStyles {
+  margin: 10px;
+}
+.divStyles > div {
+  float: right;
+ 
+}
+.divStyles input 
+{
+    cursor: pointer;
+}
+
+.divLeft > img {
+  float: left;
+}

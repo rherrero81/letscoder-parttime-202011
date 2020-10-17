@@ -1,0 +1,195 @@
+<html>
+
+<head>
+  <link rel="stylesheet" href="css/flex.css">
+  <link rel="stylesheet" href="css/float.css">
+  <link rel="stylesheet" href="css/general.css">
+  <link rel="stylesheet" href="css/grid.css">
+  <link rel="stylesheet" href="css/slider.css">
+
+
+</head>
+
+<body>
+  <div class="generalContainer">
+    <!--     <div>
+      <a class="facebook"></a> 
+    </div> -->
+
+    <br>
+    <div class="divLeft">
+      <img src="https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/logo.svg"
+        alt="Utensilios de repostería - Comprar fondant online" class="large" />
+    </div>
+    <br>
+    <div>
+      <div class="slideshow-container">
+
+        <!-- Full-width images with number and caption text -->
+        <div class="mySlides fade">
+          <div class="numbertext">1 / 3</div>
+          <img class="imgbanner" title="Pan"
+            src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5c2f5c969f181-png/1080X600.png"
+            alt="Pan" width="1080" height="600" style="position:relative;" />
+        
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">2 / 3</div>
+          <img class="imgbanner" title="Comuniones"
+            src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5e5f6bc382391-png/1080X600.png"
+            alt="Comuniones" width="1080" height="600" style="position:relative;">
+          
+        </div>
+
+        <div class="mySlides fade">
+          <div class="numbertext">3 / 3</div>
+          <img class="imgbanner" title="Wilton"
+            src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5c2f5d436eaf7-png/1080X600.png"
+            alt="Wilton" width="1080" height="600" style="position:relative;">
+          
+        </div>
+
+        <!-- Next and previous buttons -->
+
+      </div>
+      <br>
+
+      <!-- The dots/circles -->
+      <div style="text-align:center">
+        <span class="dot" onclick="currentSlide(1)"></span>
+        <span class="dot" onclick="currentSlide(2)"></span>
+        <span class="dot" onclick="currentSlide(3)"></span>
+      </div>
+
+    </div>
+
+    <div>
+      <img class="iUtilsabs" height="125"
+        src="https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/icons/utensiliosML.png"
+        alt="Utensilios" />
+    </div>
+
+    <div class="secondContainer">
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div class="title">
+        <h2>UTENSILIOS</h2>
+      </div>
+
+      <div class="divStyles">
+        <div>
+          <input type="checkbox" id="cboxGrid" onclick="changeStyle('Grid')" value="second_checkbox"  />
+          <label for="cg">Grid</label>
+        </div>
+        <div>
+          <input type="checkbox" id="cboxFlex" onclick="changeStyle('Flex')" value="second_checkbox" checked />
+          <label for="cf">Flex</label>
+        </div>
+        <div>
+          <input type="checkbox" id="cboxFloat" onclick="changeStyle('Float')" value="second_checkbox" />
+          <label for="cff">Float</label>
+        </div>
+      </div>
+
+      <div class="containerUtlis">
+        <div id="divUtils" class="divFlex">
+          <div class="colx row2x one rowspan">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/moldesdereposteria.jpg"
+              alt="MOLDES DE REPOSTERÍA" class="img-responsive widget" />
+          </div>
+          <div class="col2x rowx two">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/utensiliosbasicos.jpg"
+              alt="UTENSILIOS BÁSICOS" class="img-responsive widget" />
+          </div>
+
+          <div class="col2x rowx three">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/pequenoelectrodomestico2.jpg"
+              alt="PEQUEÑO ELECTRODOMÉSTICO" class="img-responsive widget" />
+          </div>
+          <br>
+          </div>
+        <div id="divUtils" class="divFlex">
+     
+       
+       
+
+          <div class="colx row2x tright four rowspan">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/cortadoresgalletas2.jpg"
+              alt="CORTADORES DE GALLETAS" class="img-responsive widget" />
+          </div>
+          <div class="col2x rowx five">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/capsulas-cupcakes.jpg"
+              alt="CÁPSULAS PARA MAGDALENAS" class="img-responsive widget" />
+          </div>
+
+          <div class="col2x rowx six">
+            <img src="https://static3.marialunarillos.com/media/wysiwyg/cajas3.jpg" alt="CAJAS Y BASES"
+              class="img-responsive widget" />
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <script type="text/javascript">
+    function changeStyle(type) {
+      document.getElementById("cboxGrid").checked = false;
+      document.getElementById("cboxFlex").checked = false;
+      document.getElementById("cboxFloat").checked = false;
+      switch (type) {
+        case "Grid":
+          document.getElementById("cboxGrid").checked = true;
+          document.getElementById("divUtils").className = "divGrid";
+
+          break;
+        case "Flex":
+          document.getElementById("cboxFlex").checked = true;
+          document.getElementById("divUtils").className = "divFlex";
+          break;
+        case "Float":
+          document.getElementById("cboxFloat").checked = true;
+          document.getElementById("divUtils").className = "divFloat";
+          break;
+        default:
+          break;
+      }
+    }
+
+    var slideIndex = 1;
+
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+      var i;
+      var slides = document.getElementsByClassName("mySlides");
+      var dots = document.getElementsByClassName("dot");
+      if (n > slides.length) { slideIndex = 1 }
+      if (n < 1) { slideIndex = slides.length }
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";
+      }
+      for (i = 0; i < dots.length; i++) {
+        dots[i].className = dots[i].className.replace(" active", "");
+      }
+      slides[slideIndex - 1].style.display = "block";
+      dots[slideIndex - 1].className += " active";
+    }
+
+    currentSlide(1);
+  </script>
+</body>
+
+</html>
