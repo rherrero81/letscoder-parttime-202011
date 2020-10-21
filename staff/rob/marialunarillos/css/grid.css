@@ -37,17 +37,17 @@
 
 .divGrid .four {
   grid-column: 3;
-  grid-row: 3 / span 2;
+  grid-row: 1 / span 2;
 }
 
 .divGrid .five {
   grid-column: 1 / span 2;
-  grid-row: 3;
+  grid-row: 1;
 }
 
 .divGrid .six {
   grid-column: 1 / span 2;
-  grid-row: 4;
+  grid-row: 2;
 }
 
 @media only screen and (max-width: 600px) {

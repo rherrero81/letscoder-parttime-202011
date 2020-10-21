@@ -1,6 +1,9 @@
-.body {
+body {
   margin: 0px !important;
 }
+
+
+
 .generalContainer {
   display: flex;
   flex-direction: column;
@@ -16,6 +19,7 @@
 }
 
 .secondContainer {
+    padding-top: 70px;
   display: flex;
   flex-direction: column;
   background-color: #f8f8f8;
@@ -42,9 +46,81 @@
 .iUtilsabs {
   position: relative;
   top: 60px;
+
 }
+
+.iconX{
+  
+    background-image: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/icons/menu.svg);
+    background-position-x: -400px;
+    background-position-y: 0px;
+   
+    background-size: 700px;
+    box-sizing: border-box;
+    color: rgb(255, 89, 89);
+    cursor: pointer;
+    display: block;
+    font-family: "Source Sans Pro", sans-serif;
+    font-size: 15px;
+    font-stretch: 100%;
+    font-style: normal;
+    font-variant-caps: normal;
+    font-variant-east-asian: normal;
+    font-variant-ligatures: normal;
+    font-variant-numeric: normal;
+    font-weight: 400;
+    height: 100px;
+    letter-spacing: 1px;
+    line-height: 23.25px;
+    margin-bottom: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    padding-right: 0px;
+    padding-top: 0px;
+    text-align: center;
+    
+    text-decoration-line: none;
+    text-decoration-style: solid;
+    text-transform: uppercase;
+    
+
+}
+
+.dMenu{
+    display: flex;
+    flex-direction: column;
+    background-color: #f8f8f8;
+    width: 100%;
+    height: 50px;;
+}
+.iMenu{
+    width: 50px;
+    height: 50px;
+    background: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/burger_menu.png) no-repeat center left;
+    text-indent: -999999px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display:none;
+   margin-left:15px; 
+   cursor: pointer;
+  
+  
+}
+
 .divStyles {
-  margin: 10px;
+    z-index: 9999;
+    margin: 10px;
+    position: fixed;
+    right: 0px;
+    bottom: 0px;
+    background-color: lightskyblue;
+    border-radius: 10px;
+    margin: 5px;
+    padding: 5px;
 }
 .divStyles > div {
   float: right;
@@ -58,3 +134,62 @@
 .divLeft > img {
   float: left;
 }
+
+.icon1
+{   
+    width:88px; 
+    background: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg) 0 -38px no-repeat transparent;
+}
+
+.icon2
+{   
+    width:58px;  
+    background: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg) -90px -38px no-repeat;
+}
+
+.icon3
+{   
+    width:68px;  
+    background: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg)  -150px -36px no-repeat transparent;
+}
+
+.icon4
+{   
+    width:80px;  
+    background: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg)  -223px -38px no-repeat transparent;
+}
+.divImgs
+{
+    display:flex;
+    justify-content: flex-end;
+}
+
+.divImgs img
+{
+background-color: #f2f2f2;;
+padding: 10px;;
+margin: 3px;
+cursor:pointer;
+width: 125px;
+    height: 125px;
+}
+.divImgs img:hover
+{
+background-color: #FF5959;;
+
+}
+
+.divLeft
+{
+    margin:4vw;
+}
+
+.dFooter
+{
+    background-color: #FF5959;
+    padding:20px;
+    color:white;; 
+}
+
+
+
