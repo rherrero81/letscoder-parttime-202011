@@ -49,6 +49,7 @@ body {
 .generalContainer {
   @extend %displayFlexColumn;
   text-align: center;
+  width: 100%;
 }
 .facebook {
   background-image: url(https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/sprite.svg);
