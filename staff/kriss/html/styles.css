@@ -1,0 +1,37 @@
+p {
+  color: red
+}
+header{
+  background-color: yellow; 
+ }
+ header{
+   color: red;
+   display: flex;
+   padding: 5px;
+ }
+ h2{
+   background-color: grey;
+  
+   
+ }
+ .main-box{
+   background-color: white;
+   margin:20px;
+   padding: 5px;
+   
+   
+ }
+ .grid-container {
+   display: grid;
+   grid-template-columns: auto auto auto;
+   background-color: green;
+   padding: 10px;
+ }
+ .grid-item {
+   background-color: red;
+   border: 1px solid rgba(0, 0, 0, 0.8);
+   padding: 20px;
+   font-size: 50px;
+   text-align: center;
+ }
+ 
