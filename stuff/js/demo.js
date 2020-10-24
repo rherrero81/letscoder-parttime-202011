@@ -4,8 +4,6 @@ var person = {
     age: 23,
     height: '196cm',
     favouriteColor: 'blue'
-
-
 }
 
 function checkAge(age) {
@@ -24,7 +22,6 @@ for (var i = 0; i < beatles.length; i++) {
         } else {
             beatle = beatle + beatles[i][j]
         }
-
     }
 }
 console.log(beatle)
@@ -38,7 +35,7 @@ function calculate(operator, num1, num2) { // 'sum', 'minus', 'mult', 'div'
     else return 'Wrong operator!'
 }
 
-var result = calculate('sum', 10 + 5)
+var result = calculate('sum', 10, 5)
 
 beatles.forEach(function (beatle) {
     console.log('Welcome ' + beatle)
