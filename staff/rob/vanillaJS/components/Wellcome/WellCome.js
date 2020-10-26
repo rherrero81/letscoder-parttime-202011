@@ -1,13 +1,23 @@
 class Wellcome extends HTMLElement {
-    get FirstNameElement() {
-        return document.getElementById("lf");
-    }
-    get LastNameElement() {
-        return document.getElementById("ll");
-    }
+
 
     get ContainerElement() {
-        return document.getElementById("wellcome");
+        if (templates['./components/Wellcome/template.html']) {
+            if (this.innerHTML === '')
+                this.innerHTML += templates['./components/Wellcome/template.html'];
+            return this.querySelector("#wellcome");
+        } else return this.querySelector("#wellcome");
+
+        //  if (!this.hasOwnProperty('children')) {
+
+    }
+
+
+    get FirstNameElement() {
+        return this.ContainerElement.querySelector("#lf");
+    }
+    get LastNameElement() {
+        return this.ContainerElement.querySelector("#ll");
     }
 
     constructor() {
@@ -25,17 +35,26 @@ class Wellcome extends HTMLElement {
 
 
         getTemplate("./components/Wellcome/template.html").then((html) => {
-            document.querySelector("template").innerHTML += html;
-            const template = document.querySelector("template");
-            const clone = document.importNode(
-                template.content.getElementById("wellcome"),
-                true
-            );
-            this.appendChild(clone);
-            VisibilityState();
+            /*   document.querySelector("template").innerHTML += html;
+              const template = document.querySelector("template");
+              const clone = document.importNode(
+                  template.content.getElementById("wellcome"),
+                  true
+              ); */
+            //this.appendChild(clone);
+            this.innerHTML += html;
+
+            this.setVisibility(this.attributes['visible'].value === 'true');
             this.refresh();
 
-            document.getElementById("bKO").addEventListener("click", function() {
+            status$.subscribe('status', function name(params) {
+                console.log('Status changed (Wellcome) : ' + params);
+                if (params == "0")
+                    that.setVisibility(true);
+                else that.setVisibility(false);
+            });
+
+            this.ContainerElement.querySelector('#bKO').addEventListener("click", function() {
                 current_user = {
                     f: "",
                     v: "",
@@ -45,7 +64,8 @@ class Wellcome extends HTMLElement {
                 };
                 that.refresh();
                 status = "2";
-                VisibilityState();
+                status$.publish('status', "2");
+                //VisibilityState();
 
             });
         });
@@ -54,18 +74,17 @@ class Wellcome extends HTMLElement {
         /*called when the element is disconnected from the page */
     }
     refresh() {
-        this.FirstNameElement.innerHTML = current_user.f;
+
+        this.FirstNameElement.innerHTML = current_user.f; // + ' ( ' + this.attributes['arg'].value + ' ) ';
         this.LastNameElement.innerHTML = current_user.l;
     }
 
     setVisibility(v) {
+        if (v) {
+            this.refresh();
+            this.ContainerElement.classList.remove("hidden");
+        } else this.ContainerElement.classList.add("hidden")
 
-        if (this.ContainerElement) {
-            if (v) {
-                this.refresh();
-                this.ContainerElement.classList.remove("hidden");
-            } else this.ContainerElement.classList.add("hidden")
-        };
     }
 }
 customElements.define("well-come", Wellcome);

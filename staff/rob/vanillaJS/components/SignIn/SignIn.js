@@ -1,19 +1,26 @@
 class Sing_In extends HTMLElement {
+
+    get ContainerElement() {
+        if (templates['./components/SignIn/template.html']) {
+            if (this.innerHTML === '')
+                this.innerHTML += templates['./components/SignIn/template.html'];
+            return this.querySelector("#sign-in");
+        } else return this.querySelector("#sign-in");
+
+    }
+
     get BackElement() {
-        return document.getElementById("bBack");
+        return this.ContainerElement.querySelector("#bBack");
     }
 
     get SaveElement() {
-        return document.getElementById("bSave");
+        return this.ContainerElement.querySelector("#bSave");
     }
 
     get ErrorElement() {
-        return document.getElementById("lErrorS");
+        return this.ContainerElement.querySelector("#lErrorS");
     }
 
-    get ContainerElement() {
-        return document.getElementById("sign-in");
-    }
 
     constructor() {
         super();
@@ -29,19 +36,26 @@ class Sing_In extends HTMLElement {
         let that = this;
 
         getTemplate("./components/SignIn/template.html").then((html) => {
-            document.querySelector('template').innerHTML += html;
-            const template = document.querySelector("template");
-            //getElementsByTagName('log-in')
-            const clone = document.importNode(
-                template.content.getElementById("sign-in"),
-                true
-            );
+            /*  document.querySelector('template').innerHTML += html;
+             const template = document.querySelector("template");
+             //getElementsByTagName('log-in')
+             const clone = document.importNode(
+                 template.content.getElementById("sign-in"),
+                 true
+             ); */
+            //this.appendChild(clone);
+            this.innerHTML += html;
 
-            this.appendChild(clone);
-            VisibilityState();
+            this.setVisibility(this.attributes['visible'].value === 'true');
+            status$.subscribe('status', function name(params) {
+                console.log('Status changed (Singin) : ' + params);
+                if (params == "1")
+                    that.setVisibility(true);
+                else that.setVisibility(false);
+            });
             this.BackElement.addEventListener("click", function() {
                 status = "2";
-                VisibilityState();
+                this.setVisibility(this.attributes['visible'].value === 'true');
 
             });
             this.SaveElement.addEventListener("click", function() {
@@ -73,18 +87,19 @@ class Sing_In extends HTMLElement {
             });
             console.log("Registered!");
             status = "2";
-            VisibilityState();
+            status$.publish('status', "2");
+            //VisibilityState();
         } else {
             this.ErrorElement.classList.add("label--error--display");
         }
     }
     setVisibility(v) {
-        if (this.ContainerElement) {
-            if (v) {
 
-                this.ContainerElement.classList.remove("hidden");
-            } else this.ContainerElement.classList.add("hidden");
-        };
+        if (v) {
+
+            this.ContainerElement.classList.remove("hidden");
+        } else this.ContainerElement.classList.add("hidden");
+
     }
 }
 customElements.define("sign-in", Sing_In);

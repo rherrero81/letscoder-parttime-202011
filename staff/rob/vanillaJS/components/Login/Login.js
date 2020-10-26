@@ -1,25 +1,33 @@
  class Log_In extends HTMLElement {
+
+     get ContainerElement() {
+         if (templates['./components/Login/template.html']) {
+             if (this.innerHTML === '')
+                 this.innerHTML += templates['./components/Login/template.html'];
+             return this.querySelector("#log-in");
+         } else return this.querySelector("#log-in");
+
+     }
+
      get UserElement() {
-         return document.getElementById("iU");
+         return this.ContainerElement.querySelector("#iU");
      }
      get PasswordElement() {
-         return document.getElementById("iP");
+         return this.ContainerElement.querySelector("#iP");
      }
      get OkElement() {
-         return document.getElementById("bOk");
+         return this.ContainerElement.querySelector("#bOk");
      }
 
      get RegisterElement() {
-         return document.getElementById("bR");
+         return this.ContainerElement.querySelector("#bR");
      }
 
      get ErrorElement() {
-         return document.getElementById("lError");
+         return this.ContainerElement.querySelector("#lError");
      }
 
-     get ContainerElement() {
-         return document.getElementById("log-in");
-     }
+
 
      constructor() {
          super();
@@ -39,16 +47,24 @@
                  */
          let that = this;
          getTemplate("./components/Login/template.html").then((html) => {
-             document.querySelector("template").innerHTML += html;
-             const template = document.querySelector("template");
+             /*    document.querySelector("template").innerHTML += html;
+                const template = document.querySelector("template");
 
-             const clone = document.importNode(
-                 template.content.getElementById("log-in"),
-                 true
-             );
+                const clone = document.importNode(
+                    template.content.getElementById("log-in"),
+                    true
+                ); */
              //template.content.children[0]
-             this.appendChild(clone);
-             VisibilityState();
+             //this.appendChild(clone);
+             this.innerHTML += html;
+
+             this.setVisibility(this.attributes['visible'].value === 'true');
+             status$.subscribe('status', function name(params) {
+                 console.log('Status changed (Login) : ' + params);
+                 if (params == "2")
+                     that.setVisibility(true);
+                 else that.setVisibility(false);
+             });
              this.OkElement.addEventListener("click", function() {
                  that.login(that.UserElement.value, that.PasswordElement.value);
              });
@@ -56,7 +72,7 @@
              this.RegisterElement.addEventListener("click", function() {
                  status = "1";
 
-                 VisibilityState();
+                 status$.publish('status', "1");
              });
          });
      }
@@ -81,20 +97,20 @@
 
              current_user = found;
              status = "0";
-
-             VisibilityState();
+             status$.publish('status', "0");
+             //VisibilityState();
 
          } else {
              this.ErrorElement.classList.add("label--error--display");
          }
      }
      setVisibility(v) {
-         if (this.ContainerElement) {
-             if (v) {
-                 this.refresh();
-                 this.ContainerElement.classList.remove("hidden");
-             } else this.ContainerElement.classList.add("hidden");
-         };
+
+         if (v) {
+             this.refresh();
+             this.ContainerElement.classList.remove("hidden");
+         } else this.ContainerElement.classList.add("hidden");
+
      }
  }
  customElements.define("log-in", Log_In);

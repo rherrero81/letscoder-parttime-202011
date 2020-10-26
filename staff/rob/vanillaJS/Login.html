@@ -8,32 +8,23 @@
 <body>
     <template>
 
+        <!-- Here load templates for each control in order to load -->
 
-        <div id="wellcome" class="container container--flex--column">
-            <div>
-                <label>WellCome</label> <label id="lf"></label> <label id="ll"></label>
-            </div>
-
-            <br>
-            <button id="bKO" class="button button--register">LOG OUT</button>
-        </div>
     </template>
     <div id="conTemp">
 
     </div>
-    <well-come></well-come>
 
-    <log-in></log-in>
+    <well-come arg='2' visible='false'></well-come>
+    <log-in visible='true'></log-in>
 
-    <sign-in></sign-in>
+    <sign-in visible='false'></sign-in>
 
 
 
     <script src="js/Utils.js"></script>
     <script src="js/StateModel.js"></script>
     <script type="text/javascript">
-
-       
     </script>
     <script src="components/Login/Login.js"></script>
     <script src="components/SignIn/SignIn.js"></script>
