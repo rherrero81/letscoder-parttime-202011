@@ -2,25 +2,20 @@
 
 <head>
 
-  <!--  <link rel="stylesheet" href="css/ScssFlex.css" />
-  <link rel="stylesheet" href="css/ScssFloat.css" />
-  <link rel="stylesheet" href="css/ScssGrid.css" />
- -->
   <link rel="stylesheet" href="scss/ScssGeneral.css" />
 
-  <!-- <link rel="stylesheet" href="css/ScssSlider.css" /> -->
 </head>
 
 <body>
   <div class="generalContainer">
     
-    <div class="dMenu">
+    <div class="generalContainer__item generalContainer__item--dMenu">
       <div>
-        <a class="iMenu"></a>
+        <a class="generalContainer__item--dMenu__iMenu"></a>
       </div>
     </div>
     <br>
-    <div class="firstContainer">
+    <div class="generalContainer__item generalContainer__item--firstContainer">
       <img class="iUtilsabs" height="125"
         src="https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/icons/utensiliosML.png"
         alt="Utensilios" />
@@ -36,30 +31,30 @@
  
     </div>
     <br />
-    <div class="dLeft">
+    <div class="generalContainer__item generalContainer__item__dLeft">
       <img src="https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/logo.svg"
         alt="Utensilios de repostería - Comprar fondant online" class="large" />
     </div>
     <br />
 
-    <div class="slidesContainer">
+    <div class="generalContainer__item slidesContainer">
 
-      <div class="mySlides fade">
-        <div class="numbertext">1 / 3</div>
+      <div class="slidesContainer__item slidesContainer__item--fade">
+       
         <img class="imgbanner" title="Pan"
           src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5c2f5c969f181-png/1080X600.png"
           alt="Pan" width="1080" height="600" style="position:relative;" />
       </div>
 
-      <div class="mySlides fade">
-        <div class="numbertext">2 / 3</div>
+      <div class="slidesContainer__item slidesContainer__item--fade">
+        
         <img class="imgbanner" title="Comuniones"
           src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5e5f6bc382391-png/1080X600.png"
           alt="Comuniones" width="1080" height="600" style="position:relative;" />
       </div>
 
-      <div class="mySlides fade">
-        <div class="numbertext">3 / 3</div>
+      <div class="slidesContainer__item slidesContainer__item--fade">
+       
         <img class="imgbanner" title="Wilton"
           src="https://static3.marialunarillos.com/media/custom/advancedslider/resized/slide-5c2f5d436eaf7-png/1080X600.png"
           alt="Wilton" width="1080" height="600" style="position:relative;" />
@@ -75,13 +70,13 @@
       </div>
     </div>
 
-    <div class="iUtilsabs">
+    <div class="generalContainer__item iUtilsabs">
       <img height="125"
         src="https://www.marialunarillos.com/skin/frontend/default/newdesign2017/images/icons/utensiliosML.png"
         alt="Utensilios" />
     </div>
 
-    <div class="secondContainer">
+    <div class="generalContainer__item  generalContainer__item--secondContainer">
 
       <div class="title">
         <h2>UTENSILIOS</h2>
@@ -101,9 +96,10 @@
           <label for="cff">Float</label>
         </div>
       </div>
-
-      <div id="divCOntUtils" class="containerUtlis Flex">
-        <div id="divUtils" class="divFlex">
+<br>
+<br>
+      <div id="divCOntUtils" class="containerUtlis--Flex">
+        <div id="divUtils" class="containerUtlis--Flex__item">
           <div class="colx row2x one rowspan">
             <img src="https://static3.marialunarillos.com/media/wysiwyg/moldesdereposteria.jpg"
               alt="MOLDES DE REPOSTERÍA" class="img-responsive widget" />
@@ -119,7 +115,7 @@
           </div>
           <br />
         </div>
-        <div id="divUtils2" class="divFlex">
+        <div id="divUtils2" class="containerUtlis--Flex__item">
 
 
           <div class="col2x rowx five">
@@ -140,27 +136,27 @@
     </div>
 
     <br /><br /><br />
-    <div class="thirdContainer">
-      <div>
-        <span class="icon1"> </span>
+    <div class="generalContainer__item generalContainer__item--thirdContainer generalContainer__item--thirdContainer--state-focus">
+      <div class="generalContainer__item--thirdContainer__item">
+        <span class="generalContainer__item--thirdContainer__item--icon1"> </span>
         <label> ENVÍO GRATIS</label>
         <br />
         <label>PEDIDOS SUPERIORES A 70€</label>
       </div>
-      <div>
-        <span class="icon2"> </span>
+      <div class="generalContainer__item--thirdContainer__item">
+        <span class="generalContainer__item--thirdContainer__item--icon2"> </span>
         <label> ENVÍO GRATIS</label>
         <br />
         <label>PEDIDOS SUPERIORES A 70€</label>
       </div>
-      <div>
-        <span class="icon3"> </span>
+      <div class="generalContainer__item--thirdContainer__item">
+        <span class="generalContainer__item--thirdContainer__item--icon3"> </span>
         <label> ENVÍO GRATIS</label>
         <br />
         <label>PEDIDOS SUPERIORES A 70€</label>
       </div>
-      <div>
-        <span class="icon4"> </span>
+      <div class="generalContainer__item--thirdContainer__item">
+        <span class="generalContainer__item--thirdContainer__item--icon4"> </span>
         <label> ENVÍO GRATIS</label>
         <br />
         <label>PEDIDOS SUPERIORES A 70€</label>
@@ -168,7 +164,7 @@
     </div>
 
     <br /><br /><br />
-    <div class="dFooter">
+    <div class="generalContainer__item dFooter">
       Copyleft ©2020
     </div>
   
@@ -193,22 +189,22 @@
       switch (type) {
         case "Grid":
           document.getElementById("cboxGrid").checked = true;
-          document.getElementById("divUtils").className = "divGrid fade";
-          document.getElementById("divUtils2").className = "divGrid fade";
-          document.getElementById("divCOntUtils").className = "containerUtlis Grid";
+          document.getElementById("divUtils").className = "containerUtlis--Grid__item fade";
+          document.getElementById("divUtils2").className = "containerUtlis--Grid__item fade";
+          document.getElementById("divCOntUtils").className = "containerUtlis--Grid";
           
           break;
         case "Flex":
           document.getElementById("cboxFlex").checked = true;
-          document.getElementById("divUtils").className = "divFlex fade";
-          document.getElementById("divUtils2").className = "divFlex fade";
-          document.getElementById("divCOntUtils").className = "containerUtlis Flex";
+          document.getElementById("divUtils").className = "containerUtlis--Flex__item fade";
+          document.getElementById("divUtils2").className ="containerUtlis--Flex__item fade";
+          document.getElementById("divCOntUtils").className = "containerUtlis--Flex";
           break;
         case "Float":
           document.getElementById("cboxFloat").checked = true;
-          document.getElementById("divUtils").className = "divFloat fade";
-          document.getElementById("divUtils2").className = "divFloat fade";
-          document.getElementById("divCOntUtils").className = "containerUtlis Float";
+          document.getElementById("divUtils").className = "containerUtlis--Float__item fade";
+          document.getElementById("divUtils2").className = "containerUtlis--Float__item fade";
+          document.getElementById("divCOntUtils").className = "containerUtlis--Float";
           break;
         default:
           break;
@@ -229,7 +225,7 @@
 
     function showSlides(n) {
       var i;
-      var slides = document.getElementsByClassName("mySlides");
+      var slides = document.getElementsByClassName("slidesContainer__item");
       var dots = document.getElementsByClassName("dot");
       if (n > slides.length) {
         slideIndex = 1;
@@ -238,13 +234,18 @@
         slideIndex = slides.length;
       }
       for (i = 0; i < slides.length; i++) {
-        slides[i].style.display = "none";
+        //slides[i].style.display = "none";
+        slides[i].classList.remove( 'slidesContainer__item--display');
+        slides[i].classList.add( 'slidesContainer__item--nodisplay');
       }
       for (i = 0; i < dots.length; i++) {
-        dots[i].className = dots[i].className.replace(" active", "");
+        dots[i].className = dots[i].className.replace(" dot--active", "");
       }
-      slides[slideIndex - 1].style.display = "block";
-      dots[slideIndex - 1].className += " active";
+     
+     // slides[slideIndex - 1].style.display = "block";
+     slides[slideIndex - 1].classList.add( 'slidesContainer__item--display');
+     slides[slideIndex - 1].classList.remove( 'slidesContainer__item--nodisplay')
+      dots[slideIndex - 1].className += " dot--active";
     }
 
     currentSlide(1);
