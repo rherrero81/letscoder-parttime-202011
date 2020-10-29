@@ -35,10 +35,11 @@ function pubSub() {
 
     // object which will track of all events and subscription
     const subscribers = {}
+    let values = []
 
     // Publisher: 
     function publish(eventName, data) {
-
+        values[eventName] = data;
         // return if event is not subscribed
         if (!Array.isArray(subscribers[eventName])) {
             return
@@ -68,8 +69,41 @@ function pubSub() {
         }
     }
 
+    function getvalue(eventName) {
+        return values[eventName];
+
+    }
+
     return {
         publish,
         subscribe,
+        getvalue
     }
+}
+
+function ObservableOf(...data) {
+    values = []
+    this.next = function(kay, data) {
+
+        values[key] = data;
+    }
+    this.subscribe = function(...observer) {
+        const [next, error, complete] = observer
+        observerD = { next, error, complete };
+
+        try {
+            data.forEach((item) => {
+                //simulated an error with the type
+                if (typeof item === 'string') {
+                    throw {};
+                }
+                observerD.next(item)
+            });
+            observerD.complete();
+        } catch (e) {
+            observerD.error("is a string");
+        }
+    };
+
+    return { subscribe: this.subscribe }
 }

@@ -1,6 +1,6 @@
  var templates = {};
- var listUsers = [];
- var status = "2";
+ var listUsers = [];;
+ const modelservice$ = new pubSub();
  var current_user = {
      f: '',
      u: '',
@@ -9,17 +9,17 @@
      m: ''
  };
 
- /*  listUsers.push({
-      f: '1',
-      u: '1',
-      l: '1',
-      p: '1',
-      m: '1'
-  }); */
+ listUsers.push({
+     f: '1',
+     u: '1',
+     l: '1',
+     p: '1',
+     m: '1'
+ });
 
 
- // const status$ = new ObservableOf(status)
- const status$ = new pubSub();
+ // const modelservice$ = new ObservableOf(status)
+ ;
 
 
 

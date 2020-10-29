@@ -21,6 +21,27 @@ class Sing_In extends HTMLElement {
         return this.ContainerElement.querySelector("#lErrorS");
     }
 
+    get UserNameElement() {
+        return this.ContainerElement.querySelector("#iUS");
+    }
+
+    get PasswordElement() {
+        return this.ContainerElement.querySelector("#iPS");
+    }
+
+    get FirstNameElement() {
+        return this.ContainerElement.querySelector("#iFN");
+    }
+
+    get LastNameElement() {
+        return this.ContainerElement.querySelector("#iLN");
+    }
+
+    get MailElement() {
+        return this.ContainerElement.querySelector("#iM");
+    }
+
+
 
     constructor() {
         super();
@@ -47,26 +68,30 @@ class Sing_In extends HTMLElement {
             this.innerHTML += html;
 
             this.setVisibility(this.attributes['visible'].value === 'true');
-            status$.subscribe('status', function name(params) {
+            modelservice$.subscribe('status', function name(params) {
                 console.log('Status changed (Singin) : ' + params);
                 if (params == "1")
                     that.setVisibility(true);
                 else that.setVisibility(false);
             });
             this.BackElement.addEventListener("click", function() {
-                status = "2";
+
+                modelservice$.publish('status', "0");
                 this.setVisibility(this.attributes['visible'].value === 'true');
 
             });
             this.SaveElement.addEventListener("click", function() {
-                that.signin(
-                    that,
-                    document.getElementById("iUS").value,
-                    document.getElementById("iPS").value,
-                    document.getElementById("iFN").value,
-                    document.getElementById("iLN").value,
-                    document.getElementById("iM").value
-                );
+
+                if (that.UserNameElement.checkValidity() && that.PasswordElement.checkValidity() && that.FirstNameElement.checkValidity() && that.LastNameElement.checkValidity() && that.MailElement.checkValidity())
+                    that.signin(
+                        that,
+                        that.UserNameElement.value,
+                        that.PasswordElement.value,
+                        that.FirstNameElement.value,
+                        that.LastNameElement.value,
+                        that.MailElement.value
+                    );
+                else that.ErrorElement.classList.add("label--error--display");
             });
         });
     }
@@ -86,17 +111,22 @@ class Sing_In extends HTMLElement {
                 m: m,
             });
             console.log("Registered!");
-            status = "2";
-            status$.publish('status', "2");
+
+            modelservice$.publish('status', "2");
             //VisibilityState();
         } else {
             this.ErrorElement.classList.add("label--error--display");
         }
     }
+    refresh() {
+        let that = this;
+        that.UserNameElement.value = that.PasswordElement.value = that.FirstNameElement.value = that.LastNameElement.value = that.MailElement.value = '';
+    }
     setVisibility(v) {
 
         if (v) {
-
+            this.refresh();
+            this.ErrorElement.classList.remove("label--error--display");
             this.ContainerElement.classList.remove("hidden");
         } else this.ContainerElement.classList.add("hidden");
 
