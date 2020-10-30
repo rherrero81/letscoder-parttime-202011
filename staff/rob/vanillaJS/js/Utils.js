@@ -107,3 +107,54 @@ function ObservableOf(...data) {
 
     return { subscribe: this.subscribe }
 }
+
+async function getUser(user, token) {
+
+    const response = await fetch('https://b00tc4mp.herokuapp.com/api/v2/users/', {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        method: 'GET'
+    });
+    const json = await response.json();
+    if (json.hasOwnProperty('error'))
+
+        return { e: json.error, t: '' }
+    else
+        return {
+            e: '',
+            t: json
+        }
+}
+async function createUser(user) {
+
+    const response = await fetch('https://b00tc4mp.herokuapp.com/api/v2/users/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(user)
+    });
+    const json = await response.json();
+    if (json.hasOwnProperty('error'))
+
+        return { e: json.error, t: '' }
+    else
+        return {
+            e: '',
+            t: json.token
+        }
+}
+
+async function authUser(user) {
+    const response = await fetch('https://b00tc4mp.herokuapp.com/api/v2/users/auth/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(user)
+    });
+    const json = await response.json();
+    let token = json.token;
+    return token;
+}

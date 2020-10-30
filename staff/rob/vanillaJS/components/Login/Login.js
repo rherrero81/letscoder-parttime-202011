@@ -50,7 +50,39 @@ class Log_In extends HTMLElement {
         /*called when the class is 
                 instantiated
                 */
+
+        //
+
+
     }
+
+
+
+    async callAPI(user, url) {
+
+        let r = await (new Promise((resolve, reject) => {
+            fetch(url, {
+                    headers: {
+                        'Content-type': 'application/json'
+                    },
+                    method: 'POST',
+                    body: JSON.stringify(user)
+                })
+                .then((c) => {
+                    resolve(c.json());
+                });
+        })).then(c => {
+            return c
+        });
+
+        return r;
+
+
+
+    }
+
+
+
     connectedCallback() {
         /*called when the element is 
                  connected to the page.
@@ -115,21 +147,47 @@ class Log_In extends HTMLElement {
         this.PasswordElement.classList.remove("input--error");
     }
     login(u, p) {
-        var found = listUsers.find(function(e) {
-            return e.u == u && e.p == p;
+        let that = this;
+        let user = {
+            username: u,
+            password: p
+        };
+
+
+        authUser(user).then(c => {
+            if (c) {
+                that.ErrorElement.classList.remove("label--error--display");
+                getUser(user, c).then(cc => {
+
+                    current_user = cc.t;
+                    modelservice$.publish('user', current_user);
+                    modelservice$.publish('status', "0");
+
+                });
+
+            } else {
+                that.ErrorElement.classList.add("label--error--display");
+            }
+
+
         });
+        /*
+                var found = listUsers.find(function(e) {
+                    return e.u == u && e.p == p;
+                });
 
-        if (found) {
-            this.ErrorElement.classList.remove("label--error--display");
+                if (found) {
+                    this.ErrorElement.classList.remove("label--error--display");
 
-            current_user = found;
-            modelservice$.publish('user', current_user);
-            modelservice$.publish('status', "0");
-            //VisibilityState();
+                    current_user = found;
+                    modelservice$.publish('user', current_user);
+                    modelservice$.publish('status', "0");
+                    //VisibilityState();
 
-        } else {
-            this.ErrorElement.classList.add("label--error--display");
-        }
+                } else {
+                    this.ErrorElement.classList.add("label--error--display");
+                }
+                */
     }
     setVisibility(v) {
 

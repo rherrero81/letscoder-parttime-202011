@@ -76,8 +76,8 @@ class Sing_In extends HTMLElement {
             });
             this.BackElement.addEventListener("click", function() {
 
-                modelservice$.publish('status', "0");
-                this.setVisibility(this.attributes['visible'].value === 'true');
+                modelservice$.publish('status', "2");
+
 
             });
             this.SaveElement.addEventListener("click", function() {
@@ -103,16 +103,39 @@ class Sing_In extends HTMLElement {
             document
                 .getElementById("lErrorS")
                 .classList.remove("label--error--display");
-            listUsers.push({
-                f: f,
-                u: u,
-                l: l,
-                p: p,
-                m: m,
-            });
-            console.log("Registered!");
+            /*   listUsers.push({
+                  f: f,
+                  u: u,
+                  l: l,
+                  p: p,
+                  m: m,
+              }); */
+            let user = {
+                username: u,
+                password: p,
+                firstname: f,
+                lastname: l,
+                email: m,
+            };
 
-            modelservice$.publish('status', "2");
+
+            createUser(user).then(c => {
+                if (c.e) {
+                    console.log("Not Registered!");
+                    that.ErrorElement.classList.add('label--error--display');
+                    that.ErrorElement.innerHTML = c.e;
+
+                } else {
+                    console.log("Registered!");
+                    that.ErrorElement.classList.remove('label--error--display');
+                    modelservice$.publish('status', "2");
+                }
+
+
+            });
+
+
+
             //VisibilityState();
         } else {
             this.ErrorElement.classList.add("label--error--display");
