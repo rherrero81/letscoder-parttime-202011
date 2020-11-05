@@ -1,4 +1,4 @@
-class Sing_In extends HTMLElement {
+class Sing_In extends HTMLComponent {
 
     get ContainerElement() {
         if (templates['./components/SignIn/template.html']) {
@@ -40,6 +40,11 @@ class Sing_In extends HTMLElement {
     get MailElement() {
         return this.ContainerElement.querySelector("#iM");
     }
+    get RemoveElement() {
+        return this.ContainerElement.querySelector("#bRemove");
+    }
+
+
 
 
 
@@ -49,38 +54,53 @@ class Sing_In extends HTMLElement {
                        instantiated
                        */
     }
-    connectedCallback() {
-        /*called when the element is 
-                        connected to the page.
-                        This can be called multiple 
-                        times during the element's lifecycle. for example when using drag&drop to move elements around */
+
+
+    Onload() {
         let that = this;
-
         getTemplate("./components/SignIn/template.html").then((html) => {
-            /*  document.querySelector('template').innerHTML += html;
-             const template = document.querySelector("template");
-             //getElementsByTagName('log-in')
-             const clone = document.importNode(
-                 template.content.getElementById("sign-in"),
-                 true
-             ); */
-            //this.appendChild(clone);
-            this.innerHTML += html;
 
-            this.setVisibility(this.attributes['visible'].value === 'true');
-            modelservice$.subscribe('status', function name(params) {
-                console.log('Status changed (Singin) : ' + params);
-                if (params == "1")
-                    that.setVisibility(true);
-                else that.setVisibility(false);
-            });
-            this.BackElement.addEventListener("click", function() {
+            that.innerHTML += html;
 
-                modelservice$.publish('status', "0");
-                this.setVisibility(this.attributes['visible'].value === 'true');
+            //APPLY ATTR
+            //that.setVisibility(that.attributes['visible'].value === 'true');
+
+            //MODEL EVENTS
+
+
+            //BUTTON EVENTS
+            that.BackElement.addEventListener("click", function() {
+
+                modelservice$.publish('status', EnumPages.Login);
+
 
             });
-            this.SaveElement.addEventListener("click", function() {
+
+            that.RemoveElement.addEventListener("click", function() {
+                let user = new Use(that.UserNameElement.value, that.PasswordElement.value);
+                modelservice$.publish('loading', true);
+                remove_user(user).then(c => {
+                    if (c.e) {
+                        console.log("Not Removed");
+                        that.ErrorElement.classList.add('label--error--display');
+                        that.ErrorElement.innerHTML = c.e;
+                        modelservice$.publish('loading', false);
+
+                    } else {
+                        console.log("Removed!");
+                        that.ErrorElement.classList.remove('label--error--display');
+                        modelservice$.publish('status', EnumPages.Login);
+                        modelservice$.publish('loading', false);
+                    }
+
+
+                });
+
+
+
+            });
+
+            that.SaveElement.addEventListener("click", function() {
 
                 if (that.UserNameElement.checkValidity() && that.PasswordElement.checkValidity() && that.FirstNameElement.checkValidity() && that.LastNameElement.checkValidity() && that.MailElement.checkValidity())
                     that.signin(
@@ -93,26 +113,72 @@ class Sing_In extends HTMLElement {
                     );
                 else that.ErrorElement.classList.add("label--error--display");
             });
+            //
+
+            //INPUT EVENTS
+
+
+            that.PasswordElement.addEventListener("focusout", function() {
+                that.checkupdate(that);
+            });
+            that.UserNameElement.addEventListener("focusout", function() {
+                that.checkupdate(that);
+            });
+
+
+            //
+
         });
+
     }
-    disconnectedCallback() {
-        /*called when the element is disconnected from the page */
+
+    checkupdate(that) {
+        if (that.PasswordElement.value != '' && that.UserNameElement.value != '') {
+            auth_user({ username: that.PasswordElement.value, password: that.UserNameElement.value }).then(c => {
+                if (c) {
+                    that.SaveElement.innerHTML = "UPDATE";
+                } else that.SaveElement.innerHTML = "SAVE";
+            });
+
+        } else {
+            that.SaveElement.innerHTML = "SAVE";
+        }
     }
+
     signin(that, u, p, f, l, m) {
         if (u != "" && p != "" && f != "" && f != "" && m != "") {
             document
                 .getElementById("lErrorS")
                 .classList.remove("label--error--display");
-            listUsers.push({
-                f: f,
-                u: u,
-                l: l,
-                p: p,
-                m: m,
-            });
-            console.log("Registered!");
+            /*   listUsers.push({
+                  f: f,
+                  u: u,
+                  l: l,
+                  p: p,
+                  m: m,
+              }); */
+            let user = new UserAttr(u, p, f, l, m)
 
-            modelservice$.publish('status', "2");
+            modelservice$.publish('loading', true);
+            registrate_user(user).then(c => {
+                if (c.e) {
+                    console.log("Not Registered!");
+                    that.ErrorElement.classList.add('label--error--display');
+                    that.ErrorElement.innerHTML = c.e;
+                    modelservice$.publish('loading', false);
+
+                } else {
+                    console.log("Registered!");
+                    that.ErrorElement.classList.remove('label--error--display');
+                    modelservice$.publish('loading', false);
+                    modelservice$.publish('status', EnumPages.Login);
+                }
+
+
+            });
+
+
+
             //VisibilityState();
         } else {
             this.ErrorElement.classList.add("label--error--display");
@@ -120,15 +186,23 @@ class Sing_In extends HTMLElement {
     }
     refresh() {
         let that = this;
+
         that.UserNameElement.value = that.PasswordElement.value = that.FirstNameElement.value = that.LastNameElement.value = that.MailElement.value = '';
+        that.checkupdate(that);
     }
+
+
+
     setVisibility(v) {
 
         if (v) {
             this.refresh();
             this.ErrorElement.classList.remove("label--error--display");
             this.ContainerElement.classList.remove("hidden");
-        } else this.ContainerElement.classList.add("hidden");
+        } else {
+
+            this.ContainerElement.classList.add("hidden");
+        }
 
     }
 }
