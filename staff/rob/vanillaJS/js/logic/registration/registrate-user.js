@@ -1,7 +1,7 @@
  function registrate_user(user) {
 
 
-     ObjectValidator.prototype.validate(user, new UserAttr('', '', '', '', ''));
+     ObjectValidator.prototype.validate(user, UserAttr);
      return ((async() => {
          let aut = await auth_user(new User(user.username, user.password));
          let method = 'POST';

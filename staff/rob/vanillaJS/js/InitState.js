@@ -37,22 +37,5 @@ modelservice$.subscribe("status", (c) => {
 
 });
 
-/*
-   <log-in></log-in>
-    <sign-in></sign-in>
 
-       <i-loading></i-loading> 
-
-    <drink-decorator></drink-decorator>
-    <i-frame url="../../../src/html/marialunarillos/"></i-frame>
-   
-   
- */
-
-// const modelservice$ = new ObservableOf(status)
 modelservice$.publish("status", EnumPages.Login);
-
-// publisher
-// Subscriber
-// unsubscribe
-// Some place to store callbacks that are registered from subscribers.

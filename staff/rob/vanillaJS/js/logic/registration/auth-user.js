@@ -1,6 +1,6 @@
  function auth_user(user) {
 
-     ObjectValidator.prototype.validate(user, new User('', ''));
+     ObjectValidator.prototype.validate(user, User);
 
      return ((async() => {
 
@@ -12,9 +12,12 @@
              body: JSON.stringify(user)
          });
          const result = await response.json();
-         if (result.error == 'username and/or password wrong')
-             return '';
-         else return result.token;
+         if (response.ok)
+             return result.token;
+         else return '';
+
+
+
 
      })());
 

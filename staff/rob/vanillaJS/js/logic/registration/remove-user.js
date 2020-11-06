@@ -1,6 +1,6 @@
  function remove_user(user) {
 
-     ObjectValidator.prototype.validate(user, new User('', ''));
+     ObjectValidator.prototype.validate(user, User);
 
      if (typeof user !== 'object')
          throw new TypeError('No es un objeto')

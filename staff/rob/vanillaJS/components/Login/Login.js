@@ -112,10 +112,7 @@ class Log_In extends HTMLComponent {
     }
     async asyncLogin(u, p) {
         let that = this;
-        let user = {
-            username: u,
-            password: p,
-        };
+        let user = new User(u, p);
         modelservice$.publish("loading", true);
         let c = await auth_user(user);
         if (c) {

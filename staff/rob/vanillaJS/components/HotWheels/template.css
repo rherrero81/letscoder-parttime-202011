@@ -3,7 +3,13 @@
     border-style: dashed;
     border-width: 1px;
     width: 100px;
+    height: 100px;
     font-size: 12px;
+}
+
+.select {
+    height: 100px;
+    cursor: pointer;
 }
 
 .wheeltemplate .wheeltemplate__item--img {

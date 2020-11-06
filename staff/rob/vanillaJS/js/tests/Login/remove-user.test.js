@@ -8,7 +8,7 @@ async function remove_user_test() {
     const r7 = await remove_user(usera);
     const r8 = await auth_user(usera);
 
-    r8 === '' ?
+    r8 === "" ?
         console.log("(OK)Test - Delete User > " + user.username) :
         console.assert(!r8, "(KO) Test user deleted fails");
 }

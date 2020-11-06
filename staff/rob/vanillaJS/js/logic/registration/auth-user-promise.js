@@ -1,6 +1,6 @@
 function auth_user(user) {
 
-    ObjectValidator.prototype.validate(user, new User('', ''));
+    ObjectValidator.prototype.validate(user, User('', ''));
 
     return new Promise(function(resolve) {
         const response = fetch('https://b00tc4mp.herokuapp.com/api/v2/users/auth/', {

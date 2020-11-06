@@ -17,10 +17,8 @@ class HTMLComponent extends HTMLElement {
     renderTemplate() {
         let that = this;
         if (this.url) loadCSS("." + this.url + "template.css");
-        checkElementTabs(that);
+        checkElementTabs(that, that);
     }
-
-
 
     Onload() {
         throw new Error("This method must be overwritten!");
