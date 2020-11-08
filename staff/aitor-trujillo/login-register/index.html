@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LOGIN REGISTER</title>
+    <link rel="stylesheet" href="./styles.css">
+    
+</head>
+<body>
+    <h1 class="title">REGISTER</h1>
+    <!-- REGISTER -->
+    <section class="container">
+        <form action="" class="form" id='register'>
+            <label for="name" id='label-name'>Name</label>
+            <input type="text" name="name" id="name" class="form__item">
+            <label for="surname">Surname</label>
+            <input type="text" name="surname" id="surname" class="form__item">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email-register" class="form__item">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password-register" class="form__item form__item--last">
+            <div class="error"></div>
+            <button type="submit" class="form__button">Send</button>
+        </form>
+    </section>
+
+    <!-- LOGIN -->
+    <section class="container">
+        <form action="" class="form" id='login'>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email-login" class="form__item">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password-login" class="form__item form__item--last">
+            <div class="error"></div>
+            <button type="submit" class="form__button">Send</button>
+        </form>
+    </section>
+
+    <!-- SHOW USER DATA -->
+    
+    <script src="./index.js"></script>
+</body>
+</html>
