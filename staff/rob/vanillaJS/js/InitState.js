@@ -12,7 +12,9 @@ EnumPages = {
 
 pages[EnumPages.DriknDecorer] = "<well-come arg='2'></well-come><drink-decorator></drink-decorator>";
 pages[EnumPages.Iframe] = "<well-come arg='2'></well-come> <i-frame url='../../../src/html/marialunarillos/' > </i-frame>";
-pages[EnumPages.Forex] = "<well-come arg='2'></well-come><i-forex> </i-forex>";
+ 
+pages[EnumPages.Forex] = "<well-come arg='2'></well-come><i-forex> </i-forex><i-loading></i-loading>";
+ 
 pages[EnumPages.Login] = "<log-in></log-in> <i-loading></i-loading> ";
 pages[EnumPages.SigIn] = "<sign-in></sign-in><i-loading></i-loading> ";
 pages[EnumPages.HotWheels] = "<well-come arg='2'></well-come><hot-wheels> </hot-wheels>";
@@ -37,22 +39,7 @@ modelservice$.subscribe("status", (c) => {
 
 });
 
-/*
-   <log-in></log-in>
-    <sign-in></sign-in>
+ 
 
-       <i-loading></i-loading> 
-
-    <drink-decorator></drink-decorator>
-    <i-frame url="../../../src/html/marialunarillos/"></i-frame>
-   
-   
- */
-
-// const modelservice$ = new ObservableOf(status)
 modelservice$.publish("status", EnumPages.Login);
-
-// publisher
-// Subscriber
-// unsubscribe
-// Some place to store callbacks that are registered from subscribers.
+ 

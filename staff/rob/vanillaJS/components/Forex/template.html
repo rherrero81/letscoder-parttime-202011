@@ -1,14 +1,41 @@
 <div id="forex">
 
     <div class="container container--flex--column">
+ 
+        <div class="updatedate ">
+            <label *vjmodel="updatedate"> Last update time: {{ldate}} {{literal}} </label>
+            <button *vj:click="changeLive()">Go!</button>
+        </div>
 
-        <span class="label label--title">CHOOSE</span>
-        <ul class="list" id="uEl">
-            <li class="list__item" value="-1">EURUSD</li>
-            <li class="list__item" value="-2 ">BITCOIN</li>
-        </ul>
+        <div class=" symboldiv ">
+            <input placeholder="Search a figure..." *vj:change="changeSearch()" type="search" /><br> <select *vj:change="changeFigure()" class="select ">
+                <option *vjmodel='figures' class="{{visible}}" value="{{symbol}}">{{description}}
+                </option>
+            </select>
+            <br>
+            <div *vjmodel="figure" class="symboltemplate ">
 
-        <span class="label label--title">COST</span> <label id="Lcost"></label>
+                <label>Symbol {{symbol}}</label><br>
+
+                <label>Type {{categoryName}}</label><br>
+
+                <label>Description {{description}}</label><br>
+
+                <label class="{{high_color}}">High {{high}} {{currency}}</label><br>
+
+                <label class="{{ask_color}}">Ask {{ask}} {{currency}}</label><br>
+
+                <label class="{{bid_color}}">Bid {{bid}} {{currency}}</label><br>
+
+                <label class="{{low_color}}">Low {{low}} {{currency}}</label><br>
+
+                <label>Time {{timeString}}</label>
+                <br>
+            </div>
+
+
+        </div>
+ 
 
     </div>
 </div>

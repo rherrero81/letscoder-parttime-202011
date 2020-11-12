@@ -1,10 +1,17 @@
-<div id="log-in" class="container container--flex--row">
-    <div *vjFor='vehicles' class="wheeltemplate">
+ 
+<div id="hotwheel" class="container container--flex--row">
+    <select *vj:change="changeColor()" class="select">
+        <option  *vjmodel='colors' >{{name}}</option>        
+      </select>
+    <br>
+    <div *vjmodel='vehicles' class="wheeltemplate">
+ 
         <label class="wheeltemplate__item--title">{{name}}</label>
         <br>
         <img class="wheeltemplate__item--img" src="{{thumbnail}}" />
         <br> Price
-        <label class="wheeltemplate__item--price">{{price}}</label>
-        <label class="wheeltemplate__item--price">$</label>
+ 
+        <label class="wheeltemplate__item--price">{{price}}$</label>
+ 
     </div>
 </div>

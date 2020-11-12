@@ -5,7 +5,9 @@ class StringValidator extends Object {
     isNotNull(o) {
         let ret = o == null || o == undefined
         if (ret)
-            throw new NullObjectError('No es un string')
+ 
+            throw new NullObjectError('Null')
+ 
         return ret;
 
     }
@@ -14,7 +16,9 @@ class StringValidator extends Object {
 
         let ret = typeof o == 'string';
         if (!ret)
-            throw new InvalidOjectError('No es un string')
+ 
+            throw new InvalidOjectError('Is not string')
+ 
         return ret;
     }
 
@@ -22,17 +26,22 @@ class StringValidator extends Object {
 
         let ret = o == '';
         if (ret)
-            throw new NullObjectError('No es un string')
+ 
+            throw new NullObjectError('Empty string')
+ 
         return ret;
 
     }
 
 
 
-    validate(a) {
-        this.isNotNull(a);
-        this.isString(a);
-        this.isNotEmpty(a);
+ 
+    validate(element, NotAllowEmpty) {
+        this.isNotNull(element);
+        this.isString(element);
+        if (NotAllowEmpty)
+            this.isNotEmpty(a);
+ 
     }
 
 }

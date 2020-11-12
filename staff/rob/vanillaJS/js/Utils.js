@@ -1,3 +1,4 @@
+/// Get / Set Components Template
 async function setTemplate(url) {
     let promise = new Promise((resolve, reject) => {
         fetch(url).then((c) => {
@@ -25,42 +26,22 @@ async function getTemplate(url) {
     });
     return promise;
     /*  promise.then((html) => {
-              document.querySelector('template').innerHTML += html;
-          }); */
+ 
+                  document.querySelector('template').innerHTML += html;
+              }); */
 }
-
-function ObservableOf(...data) {
-    values = [];
-    this.next = function(kay, data) {
-        values[key] = data;
-    };
-    this.subscribe = function(...observer) {
-        const [next, error, complete] = observer;
-        observerD = { next, error, complete };
-
-        try {
-            data.forEach((item) => {
-                //simulated an error with the type
-                if (typeof item === "string") {
-                    throw {};
-                }
-                observerD.next(item);
-            });
-            observerD.complete();
-        } catch (e) {
-            observerD.error("is a string");
-        }
-    };
-
-    return { subscribe: this.subscribe };
-}
-
+/// Load / Unload js and css
 function loadScript(url) {
     var head = document.getElementsByTagName("head")[0];
     var script = document.createElement("script");
     script.type = "text/javascript";
     script.src = url;
     head.appendChild(script);
+}
+
+function unLoadScript(url) {
+    for (let item of document.querySelector("head").children)
+        if (item.src.indexOf(url) != -1) item.remove();
 }
 
 function loadCSS(url) {
@@ -72,100 +53,138 @@ function loadCSS(url) {
 }
 
 function unLoadCSS(url) {
-
     for (let item of document.querySelector("head").children)
         if (item.href.indexOf(url) != -1) item.remove();
-
 }
 
+///*VJ: Binding
+/////////////////////////
 
-
-
-
-function checkElementTabs(that) {
+function checkElementTabs(root, element) {
     let newnodes = document.createDocumentFragment();
-    for (let item of that.children) {
-        if (item.children) this.checkElementTabs(item);
-        if (item.attributes["*vjfor"]) {
-            let modeltofor = modelservice$.getvalue(
-                item.attributes["*vjfor"].value
-            );
-            let result = "";
+    for (let item of element.children) {
+        if (item.children) this.checkElementTabs(root, item);
+        //BIND MODEL *vjmodel=model
+        if (item.attributes["*vjmodel"]) {
+            let ss = modelservice$.getvalue(item.attributes["*vjmodel"].value);
+            if (ss != undefined) {
+                let modeltofor = ss.length ? ss : [ss];
+                let result = "";
 
-            for (let itemodel of modeltofor) {
-                let titem = item.cloneNode();
-                titem.innerHTML = item.innerHTML;
-                this.setAttrElement(titem, itemodel);
-                titem.attributes.removeNamedItem("*vjfor")
-                newnodes.appendChild(titem);
-                // result += titem.innerHTML;
-            }
-            item.replaceWith(newnodes);
-        }
-    }
-}
+                for (let itemodel of modeltofor)
 
-function checkElementText(that) {
-    for (let item of that.children) {
-        if (item.children) checkElement(item);
-        if (item.innerText.indexOf("{{") != -1) {
-            let keys = item.innerText
-                .replace("{{", "")
-                .replace("}}", "")
-                .split(".");
-            if (keys.length == 1) item.innerText = modelservice$.getvalue(keys[0]);
-            else {
-                let objkey = keys.reduce(function(accum, value, index) {
-                    if (index == 0) accum = modelservice$.getvalue(value);
-                    else {
-                        accum = accum[value];
+                    if (itemodel.length != 0 || itemodel.length == NullObjectError) {
+                        let titem = item.cloneNode();
+                        titem.innerHTML = item.innerHTML;
+                        this.setAttrsElement(titem, itemodel);
+                        titem.attributes.removeNamedItem("*vjmodel");
+                        newnodes.appendChild(titem);
                     }
-                    return accum;
-                }, {});
-                item.innerText = objkey;
+                item.replaceWith(newnodes);
             }
+
         }
+
+        //BIND EVENTS *vj:{event}
+        let events = Array.from(item.attributes).filter(
+            (c) => c.localName.indexOf("*vj:") != -1
+        );
+        if (
+            events.length > 0
+        ) {
+            let event = events[0].localName.split(":")[1];
+            item.attributes.removeNamedItem(events[0].name);
+            item.removeEventListener(event, this.raiseEvent.bind(null, root, events));
+            item.addEventListener(event, this.raiseEvent.bind(null, root, events));
+        }
+        //BIND variables
+        if (item.innerHTML.indexOf('{{') != -1 && !item.attributes["*vjmodel"] && !item.parentElement.attributes["*vjmodel"]) {
+            let re = /{{[a-zA-Z_]*}}/gi;
+
+            let liste = this.getVariables(item.innerHTML);
+            liste.forEach(ss => {
+                let imodel = modelservice$.getvalue(ss.replace('{{', '').replace('}}', ''));
+                item.innerHTML = item.innerHTML.replace(ss, imodel);
+            });
+            item.innerHTML = item.innerHTML.replace('{{', '').replace('}}', '');
+
+        }
+
+
     }
 }
 
-function checkElementTextModel(that, model) {
-    this.setTextElement(that, model);
-    for (let item of that.children) {
-        if (item.children) checkElementTextModel(item, model);
-    }
+function raiseEvent(root, events, e) {
+    let method = events[0].value.split("(")[0];
+    let attr = events[0].value.split("(")[1].replace(")", "");
+    if (!root[method])
+        throw new TypeError(`Method ${method} doesn't exists`);
+
+    if (attr === "") {
+        if (e.target.type == 'checkbox')
+            root[method](e.target.checked);
+        else
+            root[method](e.target.value);
+    } else root[method](attr);
+
 }
 
-function setAttrElement(item, model) {
+
+
+function setAttrsElement(item, model) {
     let cal = "src";
+    //if (item.children.length == 0) {
+    Array.from(item.attributes).forEach(c => replaceAttrElement(item, c.localName.replace('class', 'className'), model));
+    replaceAttrElement(item, "innerHTML", model);
+    //}
+
     for (let subitem of item.children) {
-        replaceTextElement(subitem, "src", model);
-        replaceTextElement(subitem, "innerText", model);
+        Array.from(subitem.attributes).forEach(c => replaceAttrElement(subitem, c.localName.replace('class', 'className'), model));
+        replaceAttrElement(subitem, "innerHTML", model);
     }
 }
 
-function replaceTextElement(item, val, model) {
-    if (item[val])
-        if (item[val].indexOf("{{") != -1 || item[val].indexOf("%7B%7B") != -1) {
-            let keys = item[val];
 
-            if (item[val].indexOf("{{") != -1)
-                keys = keys.replace(/\s/g, "")
-                .replace("{{", "")
-                .replace("}}", "")
-                .split(".");
-            else
-                keys = keys.replace(/\s/g, "")
-                .split("%7B%7B")[1]
-                .replace("%7D%7D", "")
-                .split(".");
+function replaceAttrElement(item, val, model) {
+    if (item[val]) {
+        let elem = item[val].replace('%7B%7B', '{{').replace('%7D%7D', '}}');
 
-            let objkey = keys.reduce(function(accum, value, index) {
+        let liste = this.getVariables(elem);
+
+
+        liste.forEach(keys => {
+
+            let objkey = keys.replace("{{", "").replace("}}", "").split('.').reduce(function(accum, value, index) {
                 if (index == 0) accum = model[value];
                 else {
                     accum = accum[value];
                 }
                 return accum;
             }, {});
-            item[val] = objkey;
+            val == 'src' || val == 'href' ? elem = objkey : elem = elem.replace(keys.toString(), objkey);
+
+            //.replace("{{", "").replace("}}", "")
+
+            item[val] = elem;
+
+        })
+
+    }
+}
+
+
+function getVariables(elem) {
+    let liste = [];
+    let re = /{{[a-zA-Z_]*}}/gi;
+
+    let m;
+
+    do {
+        m = re.exec(elem);
+        if (m) {
+            liste.push(m[0]);
         }
+    } while (m);
+    return liste;
+ 
 }

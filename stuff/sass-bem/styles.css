@@ -1,0 +1,81 @@
+.bem-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.title {
+  padding-top: 1.5em;
+  padding-bottom: 1.5em;
+}
+
+.button {
+  padding: 10px;
+  margin-right: 5px;
+  font-size: 1.1em;
+  color: blue;
+  border: 2px solid darkgray;
+}
+.button--success {
+  background-color: lightgreen;
+  border: 4px solid lime;
+  color: black;
+}
+.button--danger {
+  color: crimson;
+  border: 6px dashed crimson;
+}
+
+.tiles-demo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tiles-container {
+  display: flex;
+}
+.tiles-container__horizontal {
+  flex-direction: column;
+}
+
+.tiles {
+  background-color: lightblue;
+}
+.tiles__horizontal {
+  height: 300px;
+  width: 610px;
+  margin-bottom: 10px;
+}
+.tiles__vertical {
+  width: 300px;
+  height: 610px;
+}
+.tiles__vertical--left {
+  margin-right: 10px;
+}
+.tiles__vertical--right {
+  margin-left: 10px;
+}
+
+.bem-school {
+  margin-bottom: 500px;
+}
+
+.list-item {
+  font-size: 25px;
+}
+.list-item__highlight {
+  color: darkgreen;
+}
+.list-item__highlight--underline {
+  text-decoration: underline;
+}
+.list-item__highlight--border {
+  border: 2px solid red;
+}
+.list-item--removed {
+  text-decoration: line-through;
+}
+
+/*# sourceMappingURL=styles.css.map */
