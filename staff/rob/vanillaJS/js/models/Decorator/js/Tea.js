@@ -5,6 +5,6 @@ class Tea extends Drink {
     }
 
     getCost() {
-        return 15 * this.size;
+        return 15;
     }
 }
