@@ -12,7 +12,9 @@ EnumPages = {
 
 pages[EnumPages.DriknDecorer] = "<well-come arg='2'></well-come><drink-decorator></drink-decorator>";
 pages[EnumPages.Iframe] = "<well-come arg='2'></well-come> <i-frame url='../../../src/html/marialunarillos/' > </i-frame>";
-pages[EnumPages.Forex] = "<well-come arg='2'></well-come><i-forex> </i-forex>";
+ 
+pages[EnumPages.Forex] = "<well-come arg='2'></well-come><i-forex> </i-forex><i-loading></i-loading>";
+ 
 pages[EnumPages.Login] = "<log-in></log-in> <i-loading></i-loading> ";
 pages[EnumPages.SigIn] = "<sign-in></sign-in><i-loading></i-loading> ";
 pages[EnumPages.HotWheels] = "<well-come arg='2'></well-come><hot-wheels> </hot-wheels>";

@@ -42,6 +42,7 @@ function unLoadScript(url) {
     for (let item of document.querySelector("head").children)
         if (item.src.indexOf(url) != -1) item.remove();
 }
+ 
 
 function loadCSS(url) {
     var head = document.getElementsByTagName("head")[0];
@@ -63,44 +64,52 @@ function checkElementTabs(root, element) {
     let newnodes = document.createDocumentFragment();
     for (let item of element.children) {
         if (item.children) this.checkElementTabs(root, item);
+        //BIND MODEL *vjmodel=model
+        if (item.attributes["*vjmodel"]) {
+            let ss = modelservice$.getvalue(item.attributes["*vjmodel"].value);
+            if (ss != undefined) {
+                let modeltofor = ss.length ? ss : [ss];
+                let result = "";
 
-        //FOR replication of hmlt template
-        if (item.attributes["*vjfor"]) {
-            let modeltofor = modelservice$.getvalue(item.attributes["*vjfor"].value);
-            let result = "";
+                for (let itemodel of modeltofor)
 
-            for (let itemodel of modeltofor) {
-                let titem = item.cloneNode();
-                titem.innerHTML = item.innerHTML;
-                this.setAttrsElement(titem, itemodel);
-                titem.attributes.removeNamedItem("*vjfor");
-                newnodes.appendChild(titem);
+                    if (itemodel.length != 0 || itemodel.length == NullObjectError) {
+                        let titem = item.cloneNode();
+                        titem.innerHTML = item.innerHTML;
+                        this.setAttrsElement(titem, itemodel);
+                        titem.attributes.removeNamedItem("*vjmodel");
+                        newnodes.appendChild(titem);
+                    }
+                item.replaceWith(newnodes);
             }
-            item.replaceWith(newnodes);
+
         }
 
-        //EVENTS *vj:{event}
+        //BIND EVENTS *vj:{event}
         let events = Array.from(item.attributes).filter(
             (c) => c.localName.indexOf("*vj:") != -1
         );
         if (
-            Array.from(item.attributes).filter(
-                (c) => c.localName.indexOf("*vj:") != -1
-            ).length > 0
+            events.length > 0
         ) {
             let event = events[0].localName.split(":")[1];
-            item.addEventListener(event, function(e) {
-                //e.target.value
-                //item.attributes["*vjonchange"].value
-                console.log("changeColor attr: " + e.target.value);
-                let method = events[0].value.split("(")[0];
-                let attr = events[0].value.split("(")[1].replace(")", "");
-                if (attr === "") root[method](e.target.value);
-                else root[method](attr);
-            });
+            item.attributes.removeNamedItem(events[0].name);
+            item.removeEventListener(event, this.raiseEvent.bind(null, root, events));
+            item.addEventListener(event, this.raiseEvent.bind(null, root, events));
         }
-    }
-}
+        //BIND variables
+        if (item.innerHTML.indexOf('{{') != -1 && !item.attributes["*vjmodel"] && !item.parentElement.attributes["*vjmodel"]) {
+            let re = /{{[a-zA-Z_]*}}/gi;
+
+            let liste = this.getVariables(item.innerHTML);
+            liste.forEach(ss => {
+                let imodel = modelservice$.getvalue(ss.replace('{{', '').replace('}}', ''));
+                item.innerHTML = item.innerHTML.replace(ss, imodel);
+            });
+            item.innerHTML = item.innerHTML.replace('{{', '').replace('}}', '');
+
+        }
+ 
 
 
 function setAttrsElement(item, model) {
@@ -109,10 +118,36 @@ function setAttrsElement(item, model) {
         Array.from(item.attributes).forEach(c => replaceAttrElement(item, c.localName, model));
         replaceAttrElement(item, "innerText", model);
     }
+}
+
+function raiseEvent(root, events, e) {
+    let method = events[0].value.split("(")[0];
+    let attr = events[0].value.split("(")[1].replace(")", "");
+    if (!root[method])
+        throw new TypeError(`Method ${method} doesn't exists`);
+
+    if (attr === "") {
+        if (e.target.type == 'checkbox')
+            root[method](e.target.checked);
+        else
+            root[method](e.target.value);
+    } else root[method](attr);
+
+ 
+}
+
+
+
+function setAttrsElement(item, model) {
+    let cal = "src";
+    //if (item.children.length == 0) {
+    Array.from(item.attributes).forEach(c => replaceAttrElement(item, c.localName.replace('class', 'className'), model));
+    replaceAttrElement(item, "innerHTML", model);
+    //}
 
     for (let subitem of item.children) {
-        Array.from(subitem.attributes).forEach(c => replaceAttrElement(subitem, c.localName, model));
-        replaceAttrElement(subitem, "innerText", model);
+        Array.from(subitem.attributes).forEach(c => replaceAttrElement(subitem, c.localName.replace('class', 'className'), model));
+        replaceAttrElement(subitem, "innerHTML", model);
     }
 }
 
@@ -120,25 +155,45 @@ function setAttrsElement(item, model) {
 function replaceAttrElement(item, val, model) {
     if (item[val]) {
         let elem = item[val].replace('%7B%7B', '{{').replace('%7D%7D', '}}');
-        if (elem.indexOf("{{") != -1) {
+
+        let liste = this.getVariables(elem);
 
 
+        liste.forEach(keys => {
 
-            let keys = elem
-                .split("}")[0]
-                .split("{")[2]
-                .split(".");
-
-
-            let objkey = keys.reduce(function(accum, value, index) {
+            let objkey = keys.replace("{{", "").replace("}}", "").split('.').reduce(function(accum, value, index) {
+ 
                 if (index == 0) accum = model[value];
                 else {
                     accum = accum[value];
                 }
                 return accum;
             }, {});
-            val == 'src' || val == 'href' ? item[val] = objkey : item[val] = elem.replace(keys.toString(), objkey).replace("{{", "").replace("}}", "");
+ 
+            val == 'src' || val == 'href' ? elem = objkey : elem = elem.replace(keys.toString(), objkey);
 
-        }
+            //.replace("{{", "").replace("}}", "")
+
+            item[val] = elem;
+
+        })
+
     }
+}
+
+
+function getVariables(elem) {
+    let liste = [];
+    let re = /{{[a-zA-Z_]*}}/gi;
+
+    let m;
+
+    do {
+        m = re.exec(elem);
+        if (m) {
+            liste.push(m[0]);
+        }
+    } while (m);
+    return liste;
+ 
 }

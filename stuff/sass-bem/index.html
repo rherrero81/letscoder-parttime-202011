@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SASS</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <section class="bem-demo">
+      <h1 class="title">BLOCK - ELEMENT (__) - MODIFIER (--)</h1>
+
+      <div>
+        <button class="button">Normal</button>
+        <button class="button button--success">Success</button>
+        <button class="button button--danger">Danger</button>
+      </div>
+    </section>
+
+    <h1 class="title">Tiles Flex w/ BEM & SASS</h1>
+
+    <section id="tiles-demo">
+      <h2>Tiles Flex</h2>
+      <section class="tiles-container">
+        <div class="tiles tiles__vertical tiles__vertical--left"></div>
+        <div class="tiles-container tiles-container__horizontal">
+          <div class="tiles tiles__horizontal"></div>
+          <div class="tiles tiles__horizontal"></div>
+        </div>
+      </section>
+      <section class="tiles-container">
+        <div class="tiles-container tiles-container__horizontal">
+          <div class="tiles tiles__horizontal"></div>
+          <div class="tiles tiles__horizontal"></div>
+        </div>
+        <div class="tiles tiles__vertical tiles__vertical--right"></div>
+      </section>
+    </section>
+
+    <section class="bem-school">
+      <h2>List example with BEM</h2>
+
+      <ul>
+        <li class="list-item">Coders Com</li>
+        <li class="list-item list-item--removed">Iron Hack</li>
+        <li class="list-item">
+          Lets Coder
+          <ul>
+            <li
+              class="list-item list-item__highlight list-item__highlight--underline"
+            >
+              Kriss
+            </li>
+            <li
+              class="list-item list-item__highlight list-item__highlight--border"
+            >
+              Antonio
+            </li>
+            <li class="list-item list-item__highlight">Rob</li>
+          </ul>
+        </li>
+      </ul>
+    </section>
+  </body>
+</html>

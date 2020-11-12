@@ -5,19 +5,25 @@ class HTMLComponent extends HTMLElement {
                                     This can be called multiple 
                                     times during the element's lifecycle. for example when using drag&drop to move elements around */
         this.Onload();
+ 
+        if (this.url) loadCSS("." + this.url + "template.css")
     }
     disconnectedCallback() {
-        /*called when the element is disconnected from the page */
+
+        if (this.url)
+            unLoadCSS(this.url + "template.css");
+        this.OnUnload();
     }
 
     OnUnload() {
-        unLoadCSS(this.url + "template.css");
+
     }
 
     renderTemplate() {
-        let that = this;
-        if (this.url) loadCSS("." + this.url + "template.css");
+        let that = this;;
         checkElementTabs(that, that);
+        //bind en vez de this
+ 
     }
 
     Onload() {
