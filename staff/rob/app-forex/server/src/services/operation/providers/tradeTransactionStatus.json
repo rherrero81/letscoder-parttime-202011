@@ -1,0 +1,46 @@
+{\"order\":225928885},\"customTag\":\"tradeTransactionStatus_160205856550100050\"}",
+    "arguments": {
+        "order": 225928885
+    },
+    "sent": {
+        "unit": [
+            433755,
+            923806700
+        ],
+        "UTCTimestamp": 1602058565501
+    }
+},
+"response": {
+    "status": true,
+    "received": {
+        "unit": [
+            433756,
+            5712699
+        ],
+        "UTCTimestamp": 1602058565583
+    },
+    "json": {
+        "order": 225928885,
+        "requestStatus": 3,
+        "message": null,
+        "customComment": "x160205780842400050_test v.0",
+        "ask": 10577.4,
+        "bid": 10577.4
+    }
+},
+"transactionId": "160205856550100050",
+"createdAt": {
+    "unit": [
+        433755,
+        923778100
+    ],
+    "UTCTimestamp": 1602058565501
+},
+"status": 2,
+"transactionPromise": {
+    "resolve": null,
+    "reject": null
+},
+"urgent": false
+}
+}

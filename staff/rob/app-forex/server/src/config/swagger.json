@@ -1,0 +1,96 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "version": "1.0.0"
+    },
+    "host": "localhost:3030",
+    "basePath": "/api/v1",
+    "schemes": [
+        "http"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/opearation": {
+            "post": {
+                "tags": [
+                    "Operation Text"
+                ],
+                "summary": "Operation service",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "content": {
+                    "application/json": {}
+                },
+                "parameters": [{
+                    "name": "operation",
+                    "in": "body",
+                    "description": "Register or update an Operation",
+                    "required": true,
+                    "schema": {
+                        "$ref": "http://127.0.0.1:5500/app/logic/definitions/Operation.json"
+                    }
+                }]
+            }
+        },
+        "/signals": {
+            "get": {
+                "tags": [
+                    "Signals"
+                ],
+                "summary": "Signals service",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "content": {
+                    "application/json": {}
+                },
+                "parameters": [{
+                    "name": "q",
+                    "in": "query",
+                    "description": "Specifies the query string",
+                    "required": true,
+                    "type": "string"
+                }]
+            }
+        },
+        "/values": {
+            "get": {
+                "tags": [
+                    "Values"
+                ],
+                "summary": "Values",
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    },
+                    "400": {
+                        "description": "Bad request"
+                    }
+                },
+                "content": {
+                    "application/json": {}
+                },
+                "parameters": [{
+                    "name": "q",
+                    "in": "query",
+                    "description": "Specifies the query string",
+                    "required": true,
+                    "type": "string"
+                }]
+            }
+        }
+    }
+}

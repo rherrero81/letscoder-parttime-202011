@@ -1,0 +1,82 @@
+{
+    "status": true,
+    "code": 200,
+    "msg": "Successfully",
+    "response": {
+        "oa_summary": "Neutral",
+        "count": {
+            "Total_Buy": 5,
+            "Total_Sell": 4,
+            "Total_Neutral": 3,
+            "maBuy": 5,
+            "maSell": 4,
+            "msg": "maBuy & maSell will remove in future."
+        },
+        "ma_avg": {
+            "SMA": {
+                "MA5": {
+                    "v": "1.17391",
+                    "s": "Neutral"
+                },
+                "MA10": {
+                    "v": "1.17061",
+                    "s": "Buy"
+                },
+                "MA20": {
+                    "v": "1.1761",
+                    "s": "Sell"
+                },
+                "MA50": {
+                    "v": "1.18011",
+                    "s": "Sell"
+                },
+                "MA100": {
+                    "v": "1.15411",
+                    "s": "Buy"
+                },
+                "MA200": {
+                    "v": "1.12561",
+                    "s": "Buy"
+                }
+            },
+            "EMA": {
+                "MA5": {
+                    "v": "1.17371",
+                    "s": "Neutral"
+                },
+                "MA10": {
+                    "v": "1.17351",
+                    "s": "Sell"
+                },
+                "MA20": {
+                    "v": "1.17511",
+                    "s": "Sell"
+                },
+                "MA50": {
+                    "v": "1.17171",
+                    "s": "Neutral"
+                },
+                "MA100": {
+                    "v": "1.1571",
+                    "s": "Buy"
+                },
+                "MA200": {
+                    "v": "1.1391",
+                    "s": "Buy"
+                }
+            },
+            "summary": "Buy"
+        }
+    },
+    "info": {
+        "id": "1",
+        "decimal": "4",
+        "symbol": "EUR\/USD",
+        "period": "1d",
+        "disclaimer": "Note: These Prices, Market trends and signals are not develop for trading purpose. Therefore we doesn`t bear any responsibility for any trading losses you might incur as a result of using this data.",
+        "update": "just now",
+        "update_time": "2020-10-07 20:57:44 UTC",
+        "server_time": "2020-10-07 20:57:44 UTC",
+        "credit_count": 1
+    }
+}
