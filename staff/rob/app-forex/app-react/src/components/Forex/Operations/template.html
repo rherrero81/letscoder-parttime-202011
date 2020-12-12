@@ -1,0 +1,40 @@
+<div id="operations">
+    <div class="operationtemplatediv">
+        <div class=" symboldiv ">
+            Current Profit <span>{{profitSum}}</span><br> Consolidated Profit <span>{{profitSumConsolidated}}</span>
+            <br>
+
+            <input placeholder="Search a symbol..." *vj:change="changeSearch()" type="search" /> Just Open<input type="checkbox" *vj:click="filterOpen()"> Just Closed<input type="checkbox" *vj:click="filterClosed()"> All<input type="checkbox" *vj:click="filterAll()">
+            <table>
+                <th>Order</th>
+
+                <th>Position</th>
+                <th>Symbol </th>
+                <th>OpenDate </th>
+                <th>Value </th>
+                <th>SL </th>
+                <th>TP </th>
+                <th>Closed Value</th>
+                <th>Profit</th>
+                <th></th>
+                <tr *vjmodel="{{operations}}">
+                    <td>{{order}} </td>
+
+                    <td>{{position}} </td>
+                    <td>{{symbol}} </td>
+                    <td>{{open_timeString}} </td>
+                    <td>{{open_price}} </td>
+                    <td>{{sl}} </td>
+                    <td>{{tp}} </td>
+                    <td>{{close_price}} </td>
+                    <td>{{profit}} </td>
+                    <td *vjif="{{!closed}}">
+                        <button *vj:click="editOperation({{order}})">Edit</button>
+                        <button *vj:click="closeOperation({{order}})">Close</button>
+                    </td>
+                </tr>
+            </table>
+
+        </div>
+    </div>
+</div>

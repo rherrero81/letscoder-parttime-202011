@@ -1,0 +1,13 @@
+{
+    "name": "app-logic",
+    "version": "0.1.0",
+    "private": false,
+    "main": "src/index.js",
+    "dependencies": {
+        "typescript": "^4.0.3",
+        "tsc-watch": "^4.2.9"
+    },
+    "scripts": {
+        "build": "npx ts-node src/index.js"
+    }
+}

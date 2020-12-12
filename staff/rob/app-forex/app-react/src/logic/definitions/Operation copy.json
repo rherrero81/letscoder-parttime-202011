@@ -1,0 +1,91 @@
+{
+    "title": "operation-invoice",
+    "properties": [{
+
+            "name": "cmd",
+            "in": "body",
+            "description": "cmd",
+            "descriptionLong": "Specifies the operation",
+            "required": true,
+            "type": "string",
+            "example": "B"
+
+        },
+        {
+            "name": "price",
+            "in": "body",
+            "description": "price",
+            "descriptionLong": "Specifies the leverage",
+            "required": true,
+            "type": "number",
+            "example": "1"
+        },
+        {
+            "name": "symbol",
+            "in": "body",
+            "description": "symbol",
+            "descriptionLong": "Specifies the symbol of Operation",
+            "required": true,
+            "type": "string",
+            "example": "BITCOIN"
+        },
+        {
+            "name": "offset",
+            "in": "body",
+            "description": "offset",
+            "descriptionLong": "Specifies the offset",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        {
+            "name": "tp",
+            "in": "body",
+            "description": "tp",
+            "descriptionLong": "Specifies the Take Profit of Operation (0 by default means no take profit)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        {
+            "name": "sl",
+            "in": "body",
+            "description": "sl",
+            "descriptionLong": "Specifies the Stop Loss of Operation (0 by default means no stop loss)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        {
+            "name": "type",
+            "in": "body",
+            "description": "type",
+            "descriptionLong": "Specifies the type of Operation ('B'=Buy 'S'=Sell)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        {
+            "name": "volume",
+            "in": "body",
+            "description": "volume",
+            "descriptionLong": "Specifies the volumen amount (1 by default)",
+            "required": true,
+            "type": "number",
+            "example": "1"
+        },
+        {
+            "name": "order",
+            "in": "body",
+            "description": "order",
+            "descriptionLong": "Specifies the Operation Id (-1 by default)",
+            "required": true,
+            "type": "number",
+            "example": "-1"
+        }
+    ],
+    "type": "object",
+    "description": "Invoice header resource"
+
+
+}
