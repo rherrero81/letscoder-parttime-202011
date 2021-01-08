@@ -1,0 +1,79 @@
+.contRemoveWidget {
+    padding: 0;
+    background: transparent;
+    position: fixed;
+    left: 25px;
+    margin: 3px;
+    top: -0px;
+    width: 100px;
+    height: 20px;
+    z-index: 999;
+}
+
+.contRemoveWidget:drop() {
+    color: red;
+    border-style: dotted;
+    border-width: 4px;
+}
+
+.contRemoveWidget button {
+    width: 200px;
+    height: 20px;
+}
+
+.contAddWidget {
+    width: 25px;
+    padding: 15px;
+    background: transparent;
+    bottom: 0;
+    position: fixed;
+    right: 0;
+    margin: 3px;
+}
+
+.contAddWidget .MuiPaper-root {
+    z-index: 1000
+}
+
+.contAddWidget .MuiFab-root {
+    position: fixed;
+    padding: 2px;
+    cursor: pointer;
+    min-width: auto !important;
+    line-height: 5px;
+}
+
+.contAddWidget .MuiInput-root,
+.contChooseWidget .MuiInput-root {
+    opacity: 0
+}
+
+.headSearch {
+    position: absolute;
+    top: 2px;
+    z-index: 99999
+}
+
+.selectSearch {
+    cursor: pointer;
+    width: 200px;
+    position: relative;
+    height: 30px;
+}
+
+.select_option--hide {
+    display: none;
+}
+
+.searchButton .MuiButtonBase-root {
+    padding: 0px !important;
+    margin-left: 6px !important;
+}
+
+.progress {
+    position: absolute;
+    width: 1em !important;
+    height: 1em !important;
+    right: 0;
+    top: 30px;
+}
