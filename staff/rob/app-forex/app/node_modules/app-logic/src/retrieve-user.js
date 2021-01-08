@@ -1,21 +1,23 @@
- const retrieveUser = (token) => {
+import validator from './validators/index.js'
+import ENV from './constants.js'
+export default (token) => {
 
-     StringValidator.prototype.validate(token)
-     return fetch(AUTH_API_URL, {
-         headers: {
-             'Authorization': 'Bearer ' + token
-         },
-         method: 'GET'
-     }).then(res => {
-         return res.json();
+    validator.StringValidator.prototype.validate(token)
+    return fetch(ENV.AUTH_API_URL, {
+        headers: {
+            'Authorization': 'Bearer ' + token
+        },
+        method: 'GET'
+    }).then(res => {
+        return res.json();
 
-     }).then(response => {
+    }).then(response => {
 
-         return {
-             e: '',
-             t: response
-         }
-     });
+        return {
+            e: '',
+            t: response
+        }
+    });
 
 
- }
+}

@@ -12,12 +12,19 @@
   import retrieveSymbol from "./retrieveSymbol"
   import retrievePivot from "./retrievePivot"
   import retrievePivot_C from "./retrievePivot_C"
-  import retrieveSignal from "./retrieveSignal"
+  import retrieveSignalMedia from "./retrieveSignalMedias"
+  import retrieveSignalPivots from "./retrieveSignalPivots"
   import retrieveSignal_C from "./retrieveSignal_C"
   import retrieveLast from "./retrieveLast"
-  import retrieveLast_C from "./retrieveLast_C" 
+  import retrieveLast_C from "./retrieveLast_C"
  
-export default {retrieveLast_C,retrieveLast,retrieveSignal_C,retrieveSignal,retrievePivot_C,retrievePivot,retrieveSymbol,retrieveIndicators_C,retrieveIndicators,registrateOperation,retrieveAllSymbols,retrieveNews,retrieveServerTime,retrieveTickPrices,retrieveTrades,retrieveTradesHistory,unregistrateOperation}   
+  import getValue from './retrieve-forex-value' 
+  import getSymbol from './retrieve-forex-symbol' 
+  import getHistoryTrade from './retrieve-forex-historytrade' 
+ 
+  import getToken from './retrieve-forex-token' 
+ 
+export default {getValue,getSymbol ,getHistoryTrade,getToken,retrieveLast_C,retrieveLast,retrieveSignal_C,retrieveSignalPivots,retrieveSignalMedia,retrievePivot_C,retrievePivot,retrieveSymbol,retrieveIndicators_C,retrieveIndicators,registrateOperation,retrieveAllSymbols,retrieveNews,retrieveServerTime,retrieveTickPrices,retrieveTrades,retrieveTradesHistory,unregistrateOperation}   
 /*module.exports = {
     registrateOperation: require('./registrateOperation')
 } */ 

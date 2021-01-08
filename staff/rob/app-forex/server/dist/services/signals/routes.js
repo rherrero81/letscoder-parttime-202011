@@ -13,6 +13,17 @@ const SignalController_1 = require("./SignalController");
 const checks_1 = require("../../middleware/checks");
 exports.default = [
     {
+        path: "/api/v1/signals",
+        method: "post",
+        handler: [
+            checks_1.checkToken,
+            (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+                const ret = yield SignalController_1.getSignals(req.body.symbol, req.body.period, req.body.price);
+                res.status(200).send(ret);
+            })
+        ]
+    },
+    {
         path: "/api/v1/signal",
         method: "post",
         handler: [

@@ -1,8 +1,12 @@
-function retrieveForexSignals(token, symbol, period) {
-    StringValidator.prototype.validate(token);
-    StringValidator.prototype.validate(symbol);
+import validator from './validators/index.js'
+import exception from './exceptions/Exception.js'
+import ENV from './constants.js'
 
-    return fetch(`${FOREX_API_URL}/signal`, {
+export default (token, symbol, period, price) => {
+    validator.StringValidator.prototype.validate(token);
+    validator.StringValidator.prototype.validate(symbol);
+
+    return fetch(`${ENV.FOREX_API_URL}/signals`, {
         headers: {
             'Content-type': 'application/json',
             'Authorization': 'Bearer ' + token
@@ -10,7 +14,8 @@ function retrieveForexSignals(token, symbol, period) {
         method: 'POST',
         body: JSON.stringify({
             symbol: symbol,
-            period: period
+            period: period ? period : '1d',
+            price: price
         })
     }).then(res => {
 

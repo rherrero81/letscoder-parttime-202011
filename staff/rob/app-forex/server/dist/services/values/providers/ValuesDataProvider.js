@@ -35,60 +35,57 @@ exports.getTok = exports.getHystTad = exports.getSymb = exports.getVal = void 0;
 const dotenv_1 = __importDefault(require("dotenv"));
 const xapi_node_1 = __importStar(require("xapi-node"));
 dotenv_1.default.config();
-const getVal = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getVal = (x, symbol) => __awaiter(void 0, void 0, void 0, function* () {
     let retq = {};
-    const x = res.locals.x;
-    yield execTardeV(x, req.body.symbol).then((s) => (retq = s));
+    yield execTardeV(x, symbol).then((s) => (retq = s));
     return retq;
 });
 exports.getVal = getVal;
-const getSymb = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getSymb = (x) => __awaiter(void 0, void 0, void 0, function* () {
     let retq = {};
-    const x = res.locals.x;
     yield execTardeS(x).then((s) => (retq = s));
     return retq;
 });
 exports.getSymb = getSymb;
-const getHystTad = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const getHystTad = (x, startTime, endTime) => __awaiter(void 0, void 0, void 0, function* () {
     let retq = {};
-    const x = res.locals.x;
-    yield execTardeH(x, req.body.startTime, req.body.endTime).then((s) => (retq = s));
+    yield execTardeH(x, startTime, endTime).then((s) => (retq = s));
     return retq;
 });
 exports.getHystTad = getHystTad;
-function getTok(req) {
+function getTok(username, password, accountType, tokenCache) {
     return __awaiter(this, void 0, void 0, function* () {
         let r = "-";
         let x = new xapi_node_1.default({
-            accountId: req.body.username,
-            password: req.body.password,
-            type: req.body.accountType,
+            accountId: username,
+            password: password,
+            type: accountType,
         });
-        req.app.locals.tokenCache.keys().forEach((key) => {
-            if (req.app.locals.tokenCache.get(key))
-                if (req.app.locals.tokenCache.get(key).accountId == x.accountId)
-                    if (req.app.locals.tokenCache.get(key).accountType == x.accountType) {
+        tokenCache.keys().forEach((key) => {
+            if (tokenCache.get(key))
+                if (tokenCache.get(key).accountId == x.accountId)
+                    if (tokenCache.get(key).accountType == x.accountType) {
                         //console.log('Remove cache element'+key);
-                        req.app.locals.tokenCache.del(key);
+                        tokenCache.del(key);
                     }
         });
         yield x.connect();
         let s = new Promise((resolve, reject) => {
             x.onReject((e) => {
-                console.log('reject');
-                x.Socket.closeConnection();
-                resolve("");
+                console.log('reject get token');
+              //  x.Socket.closeConnection();
+                resolve({ error: e.reason.explain });
             });
             x.onReady(() => __awaiter(this, void 0, void 0, function* () {
                 //const tok= base64url(crypto.randomBytes(120)); 
                 var jwt = require('jsonwebtoken');
                 var tok = jwt.sign({
-                    accountId: req.body.username,
-                    password: req.body.password,
-                    type: req.body.accountType,
+                    accountId: username,
+                    password: password,
+                    type: accountType,
                 }, 'shhhhh');
-                req.app.locals.tokenCache.set(tok, x);
-                // console.log('create token for: '+ req.app.locals.tokenCache.get(tok).accountId); 
+                tokenCache.set(tok, x);
+                console.log('create token for: ' + username + ' , token= ' + tok);
                 resolve(tok);
             }));
         });
@@ -102,9 +99,9 @@ function execTardeH(x, st, en) {
             x.Socket.send
                 .getTradesHistory(st, en)
                 .then((symbols) => {
-                console.error("execTardeH");
+                /*   console.error("execTardeH"); */
                 console.error(symbols);
-                x.disconnect().then(() => console.log("Disconnected"));
+                /*   x.disconnect().then(() => console.log("Disconnected")); */
                 resolve(symbols);
             })
                 .catch((e) => {
@@ -124,7 +121,7 @@ function execTardeS(x) {
                 .getAllSymbols()
                 .then((symbols) => {
                 // console.log("Symbolsback * "); 
-                x.disconnect().then(() => console.log("Disconnected"));
+                /*     x.disconnect().then(() => console.log("Disconnected")); */
                 resolve(symbols);
             })
                 .catch((e) => {
@@ -145,13 +142,13 @@ function execTardeV(x, symbol) {
                 period: xapi_node_1.PERIOD_FIELD.PERIOD_M1,
             })
                 .then(({ candles, digits }) => {
-                console.error("execTardeV-return candles");
-                x.disconnect().then(() => console.log("Disconnected"));
+                /*   console.error("execTardeV-return candles");
+                  x.disconnect().then(() => console.log("Disconnected")); */
                 resolve({ candles, digits });
             })
                 .catch((e) => {
-                x.disconnect().then(() => console.log("Disconnected"));
-                console.error("execTardeV-Failed");
+                /*   x.disconnect().then(() => console.log("Disconnected"));
+                  console.error("execTardeV-Failed"); */
                 console.error(e);
                 resolve([]);
             });

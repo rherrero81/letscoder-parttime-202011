@@ -1,19 +1,23 @@
- const registrateForexOperation = (token, operation) => {
+import validator from './validators/index.js'
+import exception from './exceptions/Exception.js'
+import ENV from './constants.js'
+export default (token, operation) => {
 
-     StringValidator.prototype.validate(token);
-     if (!operation.validate())
-         throw new BadOperation();
+    validator.StringValidator.prototype.validate(token);
+    if (!operation.validate())
+        throw new exception.BadOperation();
 
-     return fetch(`${FOREX_API_URL}/operation`, {
-         headers: {
-             'Content-type': 'application/json',
-             'Authorization': 'Bearer ' + token
-         },
-         method: 'POST',
-         body: JSON.stringify(operation)
-     }).then(res => {
-         if (res.status == 400) return null;
-         // throw new BadRequest('Invalid token');
-         return res.json();
-     })
- }
+    return fetch(`${ENV.FOREX_API_URL}/operation`, {
+        headers: {
+            'Content-type': 'application/json',
+            'Authorization': 'Bearer ' + token
+        },
+        method: 'POST',
+        body: JSON.stringify(operation)
+    }).then(res => {
+        if (res.status == 400) // return res.message;
+            throw new exception.BadRequest('Invalid token');
+
+        return res.json();
+    })
+}

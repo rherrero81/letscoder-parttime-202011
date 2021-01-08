@@ -7,7 +7,7 @@ export default  async (x: XAPI) => {
    
     await execFunc(x, x.Socket.send.getAllSymbols,[]).then((s) => {
       
-      console.log(JSON.stringify(s));
+      
       rets = s;
     });
     return rets;

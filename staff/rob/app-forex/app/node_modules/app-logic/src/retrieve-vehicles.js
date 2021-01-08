@@ -1,7 +1,9 @@
-const searchVehicles = query => {
-    StringValidator.prototype.validate(query);
+import validator from './validators/index.js'
+import ENV from './constants.js'
+export default (query) => {
+    validator.StringValidator.prototype.validate(query);
     return (async() => {
-        const res = await fetch(`${WHEELS_API_URL}${query}`)
+        const res = await fetch(`${ENV.WHEELS_API_URL}${query}`)
 
         if (res.status !== 200) throw new Error('problem with api')
 
@@ -10,6 +12,8 @@ const searchVehicles = query => {
         return results
     })()
 }
+
+
 
 
 /* ;

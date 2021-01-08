@@ -1,13 +1,13 @@
- 
+  
  import OperationProvider from "server-logic";  
-
+  
  
  export const setOperation  = async (x: any,operation: any) => {
   return await  OperationProvider.registrateOperation(x,operation);
 };
-  
+      
 export const getTradesHistory= async (x: any,time: any) => {
-  
+    
   return await OperationProvider.retrieveTradesHistory(x,time);
 };
 export const getTrades = async (x: any,time: any) => {

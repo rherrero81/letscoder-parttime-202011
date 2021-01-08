@@ -1,15 +1,19 @@
-function retrieveForexValues(token, symbol) {
-    StringValidator.prototype.validate(token);
-    StringValidator.prototype.validate(symbol);
+import validator from './validators/index.js'
+import ENV from './constants.js'
 
-    return fetch(`${FOREX_API_URL}/values`, {
+export default (token, symbol, period) => {
+    validator.StringValidator.prototype.validate(token);
+    validator.StringValidator.prototype.validate(symbol);
+
+    return fetch(`${ENV.FOREX_API_URL}/values`, {
         headers: {
             'Content-type': 'application/json',
             'Authorization': 'Bearer ' + token
         },
         method: 'POST',
         body: JSON.stringify({
-            symbol: symbol
+            symbol: symbol,
+            period: period
         })
     }).then(res => {
 

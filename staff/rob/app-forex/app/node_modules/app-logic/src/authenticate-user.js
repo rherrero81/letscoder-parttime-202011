@@ -1,7 +1,8 @@
-module.exports = (username, password) => {
+import validator from './validators/index.js'
+export default (username, password) => {
 
-    StringValidator.prototype.validate(username);
-    StringValidator.prototype.validate(password);
+    validator.StringValidator.prototype.validate(username);
+    validator.StringValidator.prototype.validate(password);
 
     return fetch('https://b00tc4mp.herokuapp.com/api/v2/users/auth/', {
         headers: {
@@ -15,8 +16,8 @@ module.exports = (username, password) => {
     }).then(response => {
 
         if (response.token)
-            return response.token;
-        else return null
+            return { token: response.token };
+        else return response.error
     });
 
 

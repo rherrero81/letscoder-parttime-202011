@@ -53,7 +53,7 @@ class Operator extends framework.component {
             logic.registrateForexOperation(app.modelservice$.getvalue("user").forex_token, that.operation).then(c => {
                 that.Onload();
                 if (!c.order)
-                    alert(c.message);
+                    alert(c.error);
 
                 app.modelservice$.publish('neworder', '');
 

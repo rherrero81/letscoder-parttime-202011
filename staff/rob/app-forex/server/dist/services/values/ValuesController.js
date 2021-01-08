@@ -8,23 +8,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getHystTrade = exports.getToken = exports.getSymbols = exports.getValues = void 0;
-const ValuesDataProvider_1 = require("./providers/ValuesDataProvider");
-const getValues = (q, r) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield ValuesDataProvider_1.getVal(q, r);
+exports.getHystTrade = exports.getToken = exports.getSymbols = exports.getValues = exports.setConfig = void 0;
+const server_logic_1 = __importDefault(require("server-logic"));
+const setConfig = (q, r) => __awaiter(void 0, void 0, void 0, function* () {
+    q.app.locals.configurations.set(r.locals.x.account.accountId, q.body.config);
+    return q.app.locals.configurations.get(r.locals.x.account.accountId);
+});
+exports.setConfig = setConfig;
+const getValues = (x, symbol, period) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield server_logic_1.default.getValue(x, symbol, period);
 });
 exports.getValues = getValues;
-const getSymbols = (q, r) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield ValuesDataProvider_1.getSymb(q, r);
+const getSymbols = (x) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield server_logic_1.default.retrieveAllSymbols(x);
 });
 exports.getSymbols = getSymbols;
-const getToken = (q, r) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield ValuesDataProvider_1.getTok(q);
+const getToken = (username, password, accountType, tokenCache) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield server_logic_1.default.getToken(username, password, accountType, tokenCache);
 });
 exports.getToken = getToken;
-const getHystTrade = (q, r) => __awaiter(void 0, void 0, void 0, function* () {
-    return yield ValuesDataProvider_1.getHystTad(q, r);
+const getHystTrade = (x, startTime, endTime) => __awaiter(void 0, void 0, void 0, function* () {
+    return yield server_logic_1.default.getHistoryTrade(x, startTime, endTime);
 });
 exports.getHystTrade = getHystTrade;
 //# sourceMappingURL=ValuesController.js.map

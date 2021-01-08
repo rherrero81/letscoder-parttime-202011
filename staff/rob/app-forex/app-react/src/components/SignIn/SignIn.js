@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import Operations from '../Forex/Operations/Operations';
+import { BrowserRouter, Switch, Route, Link } from 'react-router-dom'; 
 /* export default class Login extends React.Component { */
 export default function SigIn(props) {
   
@@ -31,7 +31,7 @@ export default function SigIn(props) {
     <br/>
     <button id="bRemove" class="button button--save">DELETE</button>
     <br/>
-    <button id="bBack" class="button button--back" onClick={()=>props.changeNavigation(0)}>BACK</button>
+  <Link to="/"><button id="bBack" class="button button--back" onClick={()=>props.changeNavigation('login')}>BACK</button></Link>  
 
     <br/>
     <label id="lErrorS" class="label label--error">Some input incomplete</label>

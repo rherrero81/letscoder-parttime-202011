@@ -1,9 +1,28 @@
 .label
+    
     &--title
         font-size: 15px
         color: $color_secondary
-    &--error
+    &--black
+        color: black
+        font-weight: bolder
+    &--highlight
+        font-weight: bolder
+        text-decoration: underline   
+    &--error       
+        font-weight: bolder
         font-size: 15px
         color: $color_error
+        &--top
+            opacity: 0.83
+            top: 1px
+            position: absolute
+            background-color:   $color_secondary
+           
+            padding: 2px; 
+            align-self: center;
+            width: 100%;
+            text-align: center;
+            left: 0;
         &--display
              opacity: 1

@@ -1,5 +1,5 @@
 .container
-    width: 50%
+    width: 400px
     height: 90vh
     margin-left: 20%
     margin-right: 20%
@@ -37,12 +37,12 @@
         flex-wrap: wrap
     &--hide
         display: none !important
-.menu
-    position: fixed
+.menu   
     grid-gap: 20px
     &--tabcolor
         background-color: $color_highlight
-    &--vertical     
+    &--vertical 
+        position: fixed   
         z-index: 999 
         border-color: black
         padding-top: 10px
@@ -60,7 +60,7 @@
                 color: white
                 cursor: pointer
 
-    &--horizontal      
+    &--horizontal         
         width: 100%
         height: 25px
         display: flex
@@ -96,5 +96,7 @@
         &--selected
             background-color: $color_secondary
             color: white
+
+    
 
 

@@ -25,11 +25,11 @@ Content-Type: application/json
 "p":1
 }
 }
-
-
+ 
+ 
 
 */
-
+ 
 export default [
   {
     path: "/api/v1/operation",
@@ -40,14 +40,15 @@ export default [
      
         //  console.log('Stringify query');
          // console.log(JSON.stringify(req));
+           
         const result = await setOperation(res.locals.x,req.body);
-        console.log('return operation :');
-        console.log(JSON.stringify(result))
+    /*     console.log('return operation :');
+        console.log(JSON.stringify(result)) */
         res.status(200).send(result);
       }
     ]
   },
-  {
+  {  
     path: "/api/v1/operation",
     method: "put",
     handler: [
@@ -85,7 +86,7 @@ export default [
       checkToken,
       async (req: Request, res: Response) => {
  
-       
+         
        
          let result:any = await getTradesHistory(res.locals.x,req.body)
        // result.returnData.push(result2.returnData); 

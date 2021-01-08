@@ -1,24 +1,32 @@
-import { getVal,getSymb ,getHystTad,getTok} from "./providers/ValuesDataProvider";
-
-
-export const getValues  = async (q: any,r:any) => {
  
-  return await getVal(q,r);
+import logic from "server-logic";
+ 
+
+export const setConfig  = async (q: any,r:any) => {
+  
+  q.app.locals.configurations.set( r.locals.x.account.accountId,q.body.config); 
+  return  q.app.locals.configurations.get( r.locals.x.account.accountId); 
+  
 };
 
-export const getSymbols = async  (q: any,r:any) => { 
-  return await getSymb(q,r);
+export const getValues  = async (x:any,symbol:string,period:number) => {
+ 
+  return await logic.getValue(x,symbol,period);
+};
+
+export const getSymbols = async  (x:any) => { 
+  return await logic.retrieveAllSymbols(x);
 }
 
 
-export const getToken = async  (q: any,r:any)  => {
- 
-  return await getTok(q);
+export const getToken = async  (username:string,password:string,accountType:string,tokenCache:any)  => {
+
+  return await logic.getToken(username,password,accountType,tokenCache);
 }
 
-export const getHystTrade = async  (q: any,r:any)  => {
+export const getHystTrade = async  (x: any,startTime:any,endTime:any)  => {
  
-  return await getHystTad(q,r);
+  return await logic.getHistoryTrade(x,startTime,endTime);
 }
 
 

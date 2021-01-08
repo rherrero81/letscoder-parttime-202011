@@ -1,8 +1,11 @@
-function retrieveForexSignalsSymbols(token, search) {
-    StringValidator.prototype.validate(token);
-    StringValidator.prototype.validate(search);
+import validator from './validators/index.js'
+import exception from './exceptions/Exception.js'
+import ENV from './constants.js'
+export default (token, search) => {
+    validator.StringValidator.prototype.validate(token);
+    validator.StringValidator.prototype.validate(search);
 
-    return fetch(`${FOREX_API_URL}/signalsymbol`, {
+    return fetch(`${ENV.FOREX_API_URL}/signalsymbol`, {
         headers: {
             'Content-type': 'application/json',
             'Authorization': 'Bearer ' + token

@@ -15,6 +15,7 @@ const router = express_1.default();
 //Cache
 var ttlSeconds = 1000;
 router.locals.tokenCache = new node_cache_1.default({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false });
+router.locals.configurations = new node_cache_1.default({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false });
 utils_1.applyMiddleware(middleware_1.default, router);
 utils_1.applyRoutes(services_1.default, router);
 const { PORT = 3030 } = process.env;

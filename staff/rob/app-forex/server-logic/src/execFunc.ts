@@ -8,9 +8,10 @@ export default async (x: XAPI,func:any,args:any): Promise<any> =>{
          // x.disconnect().then(() => console.log("Disconnected"));
      
           resolve(orders);
-        }).catch(()=>{ 
+        }).catch((e:any)=>{ 
         
-          console.log("execFunc catch");
+          console.log("execFunc catch: ");
+          console.log(e);
           
           resolve([]);});
       });

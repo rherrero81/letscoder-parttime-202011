@@ -16,7 +16,7 @@ const router = express();
 //Cache
 var ttlSeconds = 1000;
 router.locals.tokenCache = new NodeCache({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false });
-
+router.locals.configurations= new NodeCache({ stdTTL: ttlSeconds, checkperiod: ttlSeconds * 0.2, useClones: false });
 applyMiddleware(middleware, router);
 
 applyRoutes(routes, router);

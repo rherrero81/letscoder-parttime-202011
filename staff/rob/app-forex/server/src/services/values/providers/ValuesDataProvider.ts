@@ -19,50 +19,56 @@ import { Resolver } from "dns";
  
 dotenv.config();
 
-export const getVal = async  (req: any,res:any)=> { 
+
+ 
+
+
+ 
+export const getVal = async  (x:any,symbol:string)=> { 
  
   let retq={}
-  const x=res.locals.x; 
-   await execTardeV(x,req.body.symbol).then((s) => (retq = s)); 
+ 
+   await execTardeV(x, symbol).then((s) => (retq = s)); 
   return retq;
 };
 
-export const getSymb = async  (req: any,res:any)=> {
+
+export const getSymb = async  (x:any)=> {
  
   let retq={};
-  const x=res.locals.x; 
+  
   await execTardeS(x).then((s) => (retq = s));  
   return retq;   
 
 };
 
-export const getHystTad = async (req: any,res:any) => {
+export const getHystTad = async (x: any,startTime:any,endTime:any) => {
  
   let retq={}
-  const x=res.locals.x;  
-  await execTardeH(x, req.body.startTime, req.body.endTime).then((s) => (retq = s));
+  
+  await execTardeH(x, startTime,  endTime).then((s) => (retq = s));
   return retq;
 
 };
 
  
 
-export async function getTok(req: any): Promise<string> {
+export async function getTok(username:string,password:string,accountType:string,tokenCache:any): Promise<string> {
   let r = "-";
   let x = new XAPI({
-    accountId: req.body.username,
-    password: req.body.password,
-    type: req.body.accountType, // or demo
+    accountId: username,
+    password: password,
+    type: accountType, // or demo
   });
  
-req.app.locals.tokenCache.keys().forEach((key:string) => {
+ tokenCache.keys().forEach((key:string) => {
   
-  if(req.app.locals.tokenCache.get(key))
-  if(req.app.locals.tokenCache.get(key).accountId==x.accountId)
-  if(req.app.locals.tokenCache.get(key).accountType==x.accountType)
+  if( tokenCache.get(key))
+  if( tokenCache.get(key).accountId==x.accountId)
+  if( tokenCache.get(key).accountType==x.accountType)
   {
     //console.log('Remove cache element'+key);
-    req.app.locals.tokenCache.del(key);
+     tokenCache.del(key);
   } 
 });
   
@@ -70,26 +76,26 @@ req.app.locals.tokenCache.keys().forEach((key:string) => {
  
     await x.connect();
     
-    let s: Promise<string> = new Promise((resolve, reject) => {
+    let s: Promise<any> = new Promise((resolve, reject) => {
          
             x.onReject((e)=>
             {       
-              console.log('reject');       
+              console.log('reject get token');       
               x.Socket.closeConnection(); 
-              resolve("")
+              resolve({error:e.reason.explain})
             
             });
             x.onReady(async () => {         
            //const tok= base64url(crypto.randomBytes(120)); 
            var jwt = require('jsonwebtoken');
            var tok = jwt.sign({
-            accountId: req.body.username,
-            password: req.body.password,
-            type: req.body.accountType, // or demo
+            accountId:  username,
+            password:  password,
+            type:  accountType, // or demo
           }, 'shhhhh');       
-           req.app.locals.tokenCache.set(tok, x);
+           tokenCache.set(tok, x);
           
-          // console.log('create token for: '+ req.app.locals.tokenCache.get(tok).accountId); 
+           console.log('create token for: '+username+' , token= '+tok); 
             resolve(tok);
             }); 
           
@@ -106,9 +112,9 @@ async function execTardeH(x: XAPI,st:number,en:number): Promise<any> {
     x.Socket.send
       .getTradesHistory(st,en)
       .then((symbols) => {
-        console.error("execTardeH");
+      /*   console.error("execTardeH"); */
         console.error(symbols);
-        x.disconnect().then(() => console.log("Disconnected"));
+      /*   x.disconnect().then(() => console.log("Disconnected")); */
         resolve(symbols);
       })
       .catch((e) => {
@@ -129,7 +135,7 @@ async function execTardeS(x: XAPI): Promise<any> {
       .getAllSymbols()
       .then((symbols) => {
        // console.log("Symbolsback * "); 
-        x.disconnect().then(() => console.log("Disconnected"));
+    /*     x.disconnect().then(() => console.log("Disconnected")); */
         resolve(symbols);
       })
       .catch((e) => {        
@@ -150,13 +156,13 @@ async function execTardeV(x: XAPI,symbol:string): Promise<any> {
       period: PERIOD_FIELD.PERIOD_M1,
     })
       .then(({ candles, digits }) => {
-        console.error("execTardeV-return candles");
-        x.disconnect().then(() => console.log("Disconnected"));
+      /*   console.error("execTardeV-return candles");
+        x.disconnect().then(() => console.log("Disconnected")); */
         resolve({candles,digits});
       })
       .catch((e) => {
-        x.disconnect().then(() => console.log("Disconnected"));
-        console.error("execTardeV-Failed");
+      /*   x.disconnect().then(() => console.log("Disconnected"));
+        console.error("execTardeV-Failed"); */
         console.error(e);
         resolve([]);
       });

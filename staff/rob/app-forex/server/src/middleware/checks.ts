@@ -50,6 +50,8 @@ export const checkToken = (
     //res.locals.x=req.app.locals.tokenCache.get(token);    
     //TODO:https://expressjs.com/en/api.html#req
      res.locals.x=req.app.locals.tokenCache.get(token);
+     
+     //res.locals.configuration=req.app.locals.configurations.get();
     if(!res.locals.x)
     throw new HTTP400Error("Bad token");    
 

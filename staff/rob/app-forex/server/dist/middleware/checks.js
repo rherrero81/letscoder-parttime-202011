@@ -39,6 +39,7 @@ const checkToken = (req, res, next) => {
         //res.locals.x=req.app.locals.tokenCache.get(token);    
         //TODO:https://expressjs.com/en/api.html#req
         res.locals.x = req.app.locals.tokenCache.get(token);
+        //res.locals.configuration=req.app.locals.configurations.get();
         if (!res.locals.x)
             throw new HttpErrors_1.HTTP400Error("Bad token");
         if (!res.locals.x.isReady)

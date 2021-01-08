@@ -1,10 +1,13 @@
-function retrieveForexTrade(token, symbol, startTime, endTime) {
-    StringValidator.prototype.validate(token);
-    StringValidator.prototype.validate(symbol);
+import validator from './validators/index.js'
+import ENV from './constants.js'
+
+export default (token, symbol, startTime, endTime) => {
+    validator.StringValidator.prototype.validate(token);
+    validator.StringValidator.prototype.validate(symbol);
     /*     StringValidator.prototype.validate(startTime);
         StringValidator.prototype.validate(EndTime); */
 
-    return fetch(`${FOREX_API_URL}/trades`, {
+    return fetch(`${ENV.FOREX_API_URL}/trades`, {
         headers: {
             'Content-type': 'application/json',
             'Authorization': 'Bearer ' + token

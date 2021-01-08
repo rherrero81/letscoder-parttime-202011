@@ -17,7 +17,21 @@ exports.default = [
         method: "post",
         handler: [
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-                const result = yield ValuesController_1.getToken(req, res);
+                const result = yield ValuesController_1.getToken(req.body.username, req.body.password, req.body.accountType, req.app.locals.tokenCache);
+                if (result.error)
+                    res.status(200).send(result);
+                const config = req.app.locals.configurations.get(req.body.username);
+                res.status(200).send({ token: result, config: config });
+            })
+        ]
+    },
+    {
+        path: "/api/v1/configWidget",
+        method: "post",
+        handler: [
+            checks_1.checkToken,
+            (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+                const result = yield ValuesController_1.setConfig(req, res);
                 res.status(200).send({ result: result });
             })
         ]
@@ -28,7 +42,7 @@ exports.default = [
         handler: [
             checks_1.checkToken,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-                const result = yield ValuesController_1.getSymbols(req, res);
+                const result = yield ValuesController_1.getSymbols(res.locals.x);
                 res.status(200).send(result);
             })
         ]
@@ -39,7 +53,7 @@ exports.default = [
         handler: [
             checks_1.checkToken,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-                const result = yield ValuesController_1.getValues(req, res);
+                const result = yield ValuesController_1.getValues(res.locals.x, req.body.symbol, req.body.period);
                 res.status(200).send(result);
             })
         ]
@@ -50,7 +64,7 @@ exports.default = [
         handler: [
             checks_1.checkToken,
             (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-                const result = yield ValuesController_1.getHystTrade(req, res);
+                const result = yield ValuesController_1.getHystTrade(res.locals.x, req.body.startTime, req.body.endTime);
                 res.status(200).send(result);
             })
         ]
