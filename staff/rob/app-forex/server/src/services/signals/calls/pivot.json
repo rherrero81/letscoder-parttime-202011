@@ -1,0 +1,10 @@
+{
+    "status": true,
+    "code": 200,
+    "msg": "Successfully",
+    "response": {
+        "pivot_point": { "classic": { "S3": "114.94", "S2": "116.28", "S1": "116.28", "PP": "0", "R1": "117.65", "R2": "117.65", "R3": "119.05" }, "fibonacci": { "S3": "116.28", "S2": "116.28", "S1": "116.28", "PP": "0", "R1": "117.65", "R2": "117.65", "R3": "117.65" }, "camarilla": { "S3": "116.28", "S2": "116.28", "S1": "116.28", "PP": "0", "R1": "117.65", "R2": "117.65", "R3": "117.65" }, "woodie": { "S3": "0", "S2": "116.28", "S1": "116.28", "PP": "0", "R1": "117.65", "R2": "117.65", "R3": "0" }, "demark": { "S3": "0", "S2": "0", "S1": "116.28", "PP": "0", "R1": "117.65", "R2": "0", "R3": "0" } },
+        "overall": { "summary": "Strong Sell", "change_at": "2020-12-26 16:59:41", "msg": "summary based on all SMA,EMA,Pivot Points and indicators" }
+    },
+    "info": { "id": "52", "decimal": "2", "symbol": "JPY\/CHF", "period": "1d", "disclaimer": "Note: These Prices, Market trends and signals are not develop for trading purpose. Therefore we doesn`t bear any responsibility for any trading losses you might incur as a result of using this data.", "update": "just now", "update_time": "2021-01-05 13:53:47 UTC", "server_time": "2021-01-05 13:53:47 UTC", "credit_count": 1 }
+}
