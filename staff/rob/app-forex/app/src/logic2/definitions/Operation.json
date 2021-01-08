@@ -1,0 +1,90 @@
+{
+    "type": "object",
+    "required": [
+        "name"
+    ],
+    "properties": {
+        "cmd": {
+            "name": "Command ",
+            "in": "body",
+
+            "description": "Specifies the operation",
+            "required": true,
+            "type": "string",
+            "example": "B"
+        },
+        "price": {
+            "name": "Price",
+            "in": "body",
+
+            "description": "Specifies the leverage",
+            "required": true,
+            "type": "number",
+            "example": "1"
+        },
+        "symbol": {
+            "name": "Symbol",
+            "in": "body",
+
+            "description": "Specifies the symbol of Operation",
+            "required": true,
+            "type": "string",
+            "example": "BITCOIN"
+
+        },
+        "offset": {
+            "name": "Offset",
+            "in": "body",
+
+            "description": "Specifies the offset",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        "tp": {
+            "name": "take Profit",
+            "in": "body",
+
+            "description": "Specifies the Take Profit of Operation (0 by default means no take profit)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        "sl": {
+            "name": "Stop Lost",
+            "in": "body",
+
+            "description": "Specifies the Stop Loss of Operation (0 by default means no stop loss)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        "type": {
+            "name": "Type",
+            "in": "body",
+
+            "description": "Specifies the type of Operation ('B'=Buy 'S'=Sell)",
+            "required": true,
+            "type": "number",
+            "example": "0"
+        },
+        "volume": {
+            "name": "Volume",
+            "in": "body",
+
+            "description": "Specifies the volumen amount (1 by default)",
+            "required": true,
+            "type": "number",
+            "example": "1"
+        },
+        "order": {
+            "name": "Order Id",
+            "in": "body",
+
+            "description": "Specifies the Operation Id (-1 by default)",
+            "required": true,
+            "type": "number",
+            "example": "-1"
+        }
+    }
+}
