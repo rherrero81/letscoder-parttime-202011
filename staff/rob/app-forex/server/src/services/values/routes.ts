@@ -11,10 +11,10 @@ export default [
     handler: [
       async (req: Request, res: Response) => {
 
-       
+        
         const result = await getToken(req.body.username,req.body.password,req.body.accountType,  req.app.locals.tokenCache);
         if(result.error) 
-        res.status(200).send(result); 
+         res.status(200).send(result); 
         const config=req.app.locals.configurations.get(req.body.username);
         res.status(200).send({token:result,config:config});
       }

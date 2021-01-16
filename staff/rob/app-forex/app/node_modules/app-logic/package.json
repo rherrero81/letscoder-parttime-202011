@@ -3,7 +3,7 @@
     "version": "0.1.0",
     "private": false,
     "type": "module",
-    "main": "src/index.js",
+    "main": "index.js",
     "dependencies": {
         "babel-cli": "^6.26.0",
         "lodash.clonedeep": "^4.5.0",

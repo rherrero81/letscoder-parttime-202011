@@ -73,7 +73,7 @@ function getTok(username, password, accountType, tokenCache) {
         let s = new Promise((resolve, reject) => {
             x.onReject((e) => {
                 console.log('reject get token');
-              //  x.Socket.closeConnection();
+                x.Socket.closeConnection();
                 resolve({ error: e.reason.explain });
             });
             x.onReady(() => __awaiter(this, void 0, void 0, function* () {

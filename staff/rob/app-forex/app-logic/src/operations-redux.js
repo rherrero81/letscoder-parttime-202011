@@ -3,7 +3,7 @@
  const applyChanges = (stateTo) => {
      const ret = stateTo.list.filter(c => {
              return stateTo.filter == 0 ? true : stateTo.filter == 1 ? !c.closed : stateTo.filter == 2 ? c.closed : true
-         }).filter(c => c.symbol.toLowerCase().indexOf(stateTo.search.toLowerCase()) != -1 || stateTo.search == '' || stateTo.search == undefined)
+         }).filter(c => c.symbol && (c.symbol.toLowerCase().indexOf(stateTo.search.toLowerCase()) != -1 || stateTo.search == '' || stateTo.search == undefined))
          .sort((a, b) => {
              if (a[stateTo.sort_column] > b[stateTo.sort_column])
                  return stateTo.sort_dir == 0 ? 1 : -1;

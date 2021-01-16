@@ -72,6 +72,7 @@ export default function Login(props) {
 		type = "text"
 		required value = { credential.login }
 		onChange = { handleChangeU }
+		 
 		/> < br />
 		< label className = "label label--title  label--black" > Password </label> < input id = "iP"
 		type = "password"

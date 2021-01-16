@@ -75,8 +75,6 @@ export default function Operations(props) {
 		});
 	}
 
-
-
 	const handleSort = (event) => {
 		event.preventDefault();
 		if (event.target.attributes['value'])
@@ -86,37 +84,39 @@ export default function Operations(props) {
 				setOrders({ type: 'sort', value: { sort_dir: 0, sort_column: event.target.attributes['value'].value } });
 			}
 
-				}
-
+	}
 
 	const getValues = (all) => {
 		if(all)
 		logic.retrieveForexTrade(props.token, '', 0, 0).then((operationsC) => {
 			logic.retrieveForexTradeHistorical(props.token, '', dstar.getTime(), dend.getTime()).then((operationsH) => {
-				setupdateDate(new Date(operationsH.time.UTCTimestamp).toLocaleTimeString());
+
 				if (operationsC && operationsH)
+				{
+					setupdateDate(new Date(operationsH.time.UTCTimestamp).toLocaleTimeString());
 					setOrders({ type: 'lists', value: { list: [...operationsC.returnData, ...operationsH.returnData] } });
+				}
 
 			});
 		});
-		else 	
+		else 
 		logic.retrieveForexTrade(props.token, '', 0, 0).then((operationsC) => {
-			
-				setupdateDate(new Date(operationsC.time.UTCTimestamp).toLocaleTimeString());
-				if (operationsC )
-					setOrders({ type: 'lists_c', value: { list: [...operationsC.returnData ] } });
+
+			setupdateDate(new Date(operationsC.time.UTCTimestamp).toLocaleTimeString());
+			if (operationsC )
+				setOrders({ type: 'lists_c', value: { list: [...operationsC.returnData ] } });
 
 		}); 
 	}
 
-    useEffect(() => {
+	useEffect(() => {
 
 		if(props.removeOrderParam)
 		orders.list.filter(c=> c.cmd==props.removeOrderParam.cmd && c.symbol==props.removeOrderParam.symbol && !c.closed)
 		.map(d=>{
 			handledeleteOperator(d);
 		});
-              
+
 	}, [props.removeOrderParam]);
 
 	useEffect(() => {

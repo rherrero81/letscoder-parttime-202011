@@ -25,6 +25,5 @@
   import getToken from './retrieve-forex-token' 
  
 export default {getValue,getSymbol ,getHistoryTrade,getToken,retrieveLast_C,retrieveLast,retrieveSignal_C,retrieveSignalPivots,retrieveSignalMedia,retrievePivot_C,retrievePivot,retrieveSymbol,retrieveIndicators_C,retrieveIndicators,registrateOperation,retrieveAllSymbols,retrieveNews,retrieveServerTime,retrieveTickPrices,retrieveTrades,retrieveTradesHistory,unregistrateOperation}   
-/*module.exports = {
-    registrateOperation: require('./registrateOperation')
-} */ 
+//module.exports = {getValue,getSymbol ,getHistoryTrade,getToken,retrieveLast_C,retrieveLast,retrieveSignal_C,retrieveSignalPivots,retrieveSignalMedia,retrievePivot_C,retrievePivot,retrieveSymbol,retrieveIndicators_C,retrieveIndicators,registrateOperation,retrieveAllSymbols,retrieveNews,retrieveServerTime,retrieveTickPrices,retrieveTrades,retrieveTradesHistory,unregistrateOperation}   
+    
