@@ -29,6 +29,6 @@ export const getHystTrade = async  (x: any,startTime:any,endTime:any)  => {
   return await logic.getHistoryTrade(x,startTime,endTime);
 }
 
-
+ 
 
  

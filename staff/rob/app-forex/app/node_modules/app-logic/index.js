@@ -21,6 +21,6 @@
  import chartlogic from './src/config-chartjs.js'
 
 
- export { retrieveForexSignal, configWidgetsUser, chartlogic, reduxOperations, OperationModel, retrieveForexTrade, retrieveForexToken, registrateForexOperation, registrateUser, removeUser, retrieveForexSignalsSymbols, retrieveForexOperation, retrieveForexSignals, retrieveForexSymbols, calculate, unregistrateForexOperation, searchVehicles, retrieveForexValues, retrieveUser, retrieveForexTradeHistorical }
+ export default { retrieveForexSignal, configWidgetsUser, chartlogic, reduxOperations, OperationModel, retrieveForexTrade, retrieveForexToken, registrateForexOperation, registrateUser, removeUser, retrieveForexSignalsSymbols, retrieveForexOperation, retrieveForexSignals, retrieveForexSymbols, calculate, unregistrateForexOperation, searchVehicles, retrieveForexValues, retrieveUser, retrieveForexTradeHistorical }
 
  // module.exports = { retrieveForexSignals, retrieveForexSignal, configWidgetsUser, chartlogic, reduxOperations, OperationModel, retrieveForexTrade, retrieveForexToken, configWidgetsUser, registrateForexOperation, registrateUser, removeUser, retrieveForexSignalsSymbols, retrieveForexOperation, retrieveForexSymbols, calculate, unregistrateForexOperation, searchVehicles, retrieveForexValues, retrieveUser, retrieveForexTradeHistorical }
