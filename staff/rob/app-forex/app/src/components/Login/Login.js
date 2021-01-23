@@ -114,14 +114,14 @@ class Log_In extends framework.component {
         let that = this;
         let user = new User(u, p);
         app.modelservice$.publish("loading", true);
-        let c = await logic.authenticateUser(user.username, user.password);
+        let c = await logic.retrieveForexToken(user.username, user.password, 'demo');
         if (c) {
             that.ErrorElement.classList.remove("label--error--display");
-            let cc = await logic.retrieveUser(c);
-            app.current_user = cc.t;
-            app.current_user.password = p;
-            app.current_user.auth_token = c;
-            app.current_user.forex_token = await logic.retrieveForexToken(user.username, user.password, 'demo');
+            /*            let cc = await logic.retrieveUser(c);
+                       app.current_user = cc.t;
+                       app.current_user.password = p;
+                       app.current_user.auth_token = c; */
+            app.current_user.forex_token = c;
             app.modelservice$.publish("user", app.current_user);
             app.modelservice$.publish("loading", false);
             app.modelservice$.publish("status", app.EnumPages.Forex);

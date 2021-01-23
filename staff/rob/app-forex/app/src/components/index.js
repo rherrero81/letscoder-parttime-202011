@@ -1,8 +1,8 @@
 import DrinkDecorator from './DrinkDecorator/DrinkDecorator.js'
-import Operations from './Forex/Operations.js'
-import Operator from './Forex/Operator.js'
-import Signals from './Forex/Signals.js'
-import Symbols from './Forex/Symbols.js'
+import Operations from './Forex/Operations/Operations.js'
+import Operator from './Forex/Operator/Operator.js'
+import Signals from './Forex/Signals/Signals.js'
+import Symbols from './Forex/Symbols/Symbols.js'
 
 import HotWheels from './HotWheels/HotWheels.js'
 import Iframe from './Iframe/Iframe.js'
