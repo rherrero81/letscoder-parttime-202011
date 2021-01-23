@@ -1,4 +1,4 @@
-import logic from '../../../logic/index.js';
+import logic from '/app/node_modules/app-logic/index.js';
 import framework from '../../../utils/index.js';
 import app from '../../../app.js';
 class Symbols extends framework.component {

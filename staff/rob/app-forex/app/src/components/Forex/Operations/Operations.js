@@ -1,4 +1,4 @@
-import logic from '../../../logic/index.js';
+import logic from '/app/node_modules/app-logic/index.js';
 import framework from '../../../utils/index.js';
 import app from '../../../app.js';
 
@@ -31,7 +31,7 @@ class Operations extends framework.component {
         let that = this;
         var dstar = new Date();
         var dend = new Date();
-        dstar.setDate(dend.getDate() - 10);
+        dstar.setDate(dend.getDate() - 1000);
         logic.retrieveForexTrade(app.modelservice$.getvalue("user").forex_token, '', 0, 0).then((operationsC) => {
 
             logic.retrieveForexTradeHistorical(app.modelservice$.getvalue("user").forex_token, '', dstar.getTime(), dend.getTime()).then((operationsH) => {

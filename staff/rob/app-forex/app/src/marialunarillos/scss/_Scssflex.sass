@@ -1,0 +1,57 @@
+.containerUtlis--Flex__item
+
+  display: flex
+  flex-wrap: wrap
+  flex-direction: column
+  width: 90%
+  height: 400px
+  margin-left: 5%
+  margin-right: 5%  
+  > div
+    padding: 0px
+
+  img
+    width: 100%
+    height: 100%
+    padding: 5px
+
+  .one
+    flex: 0 0 100%
+    width: 30vw
+
+  .two,
+  .three
+    flex: 0 0 50%
+    width: 60vw
+
+  .four
+    width: 30vw
+    flex: 0 0 100%
+
+  .five,
+  .six
+    width: 60vw
+    flex: 0 0 50%
+
+.generalContainer__item--thirdContainer
+  flex-direction: row
+  > div
+    width: 25%
+ 
+
+
+@media only screen and (max-width: 650px) 
+  .containerUtlis--Flex
+    height: 1000px !important 
+  .containerUtlis--Flex__item
+    flex-direction: row
+    
+  .one,.two,.three,.four,.five,.six,.seven
+    flex: 0 0 100% !important
+    width: 90% !important
+    height: 200px  
+
+ 
+  
+ 
+    

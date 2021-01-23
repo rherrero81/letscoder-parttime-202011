@@ -1,4 +1,4 @@
-import logic from '../../../logic/index.js';
+import logic from '/app/node_modules/app-logic/index.js';
 import framework from '../../../utils/index.js';
 import app from '../../../app.js';
 class Operator extends framework.component {
@@ -11,6 +11,10 @@ class Operator extends framework.component {
 
         //  if (!this.hasOwnProperty('children')) {
     }
+    get ErrorElement() {
+        return this.ContainerElement.querySelector("#lError");
+    }
+
 
     constructor() {
         super();
@@ -52,8 +56,11 @@ class Operator extends framework.component {
         if (that.operation.validate())
             logic.registrateForexOperation(app.modelservice$.getvalue("user").forex_token, that.operation).then(c => {
                 that.Onload();
-                if (!c.order)
-                    alert(c.error);
+                that.ErrorElement.classList.remove("label--error--display");
+                if (c.error) {
+                    that.ErrorElement.classList.add("label--error--display");
+                    that.ErrorElement.innerText = c.error;
+                }
 
                 app.modelservice$.publish('neworder', '');
 

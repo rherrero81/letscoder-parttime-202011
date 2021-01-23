@@ -5,7 +5,8 @@
             <input placeholder="Search a figure... " *vj:change="changeSearch()" type="search " />
             <button id="badd" *vj:click="addNew()">+</button>
             <br> <select *vj:change="changeFigure() " class="select ">
-                <option *vjmodel='figures' class="{{visible}} " value="{{symbol}} ">{{description}} > <label class="{{high_color}} "></label> {{bid}} {{currency}}</label></option>
+                <option *vjmodel='figures' class="{{visible}} " value="{{symbol}} ">{{description}} > <label
+                        class="{{high_color}} "></label> {{bid}} {{currency}}</label></option>
                 </option>
             </select>
             <br>
@@ -24,8 +25,8 @@
 
             </div>
             <br>
-            <label *vjmodel="{{updatedate}}">{{ldate}} {{literal}} </label>
-            <button *vj:click="changeLive()">Go!</button>
+            <label *vjmodel="{{updatedate}}">{{ldate}} </label>
+            <!--   <button *vj:click="changeLive()">Go!</button> -->
 
         </div>
     </div>

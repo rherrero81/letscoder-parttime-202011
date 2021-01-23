@@ -1,5 +1,3 @@
- import cloneDeep from 'lodash/cloneDeep';
-
  const applyChanges = (stateTo) => {
      const ret = stateTo.list.filter(c => {
              return stateTo.filter == 0 ? true : stateTo.filter == 1 ? !c.closed : stateTo.filter == 2 ? c.closed : true
@@ -20,7 +18,7 @@
 
  export default (stateBAK, action) => {
 
-     const state = cloneDeep(stateBAK);
+     const state = Object.assign({}, stateBAK);
      state.call = false;
      switch (action.type) {
          case 'stopcall':

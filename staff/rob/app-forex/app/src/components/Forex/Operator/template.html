@@ -29,10 +29,16 @@
                 <tr>
                     <td>Price : {{price}} <input id="ip" type="number" step=".01" value='{{price}}'> </td>
                 </tr>
-
-                <td>
-                    <button *vj:click="saveOperation({{order}})">Save</button>
-                </td>
+                <tr>
+                    <td>
+                        <button *vj:click="saveOperation({{order}})">Save</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <label id="lError" class="label label--error"></label>
+                    </td>
+                </tr>
 
             </table>
 

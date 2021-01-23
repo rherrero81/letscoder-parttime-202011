@@ -70,9 +70,10 @@ class Wellcome extends framework.component {
             //   that.setVisibility(this.attributes["visible"].value === "true");
 
             //MODEL EVENTS
-
-            that.FirstNameElement.innerHTML = app.modelservice$.getvalue("user").firstname;
-            that.LastNameElement.innerHTML = app.modelservice$.getvalue("user").lastname;
+            /* 
+                        that.FirstNameElement.innerHTML = app.modelservice$.getvalue("user").firstname;
+                        that.LastNameElement.innerHTML = app.modelservice$.getvalue("user").lastname */
+            ;
 
             app.modelservice$.subscribe("user", function name(user) {
                 console.log("User changed (Wellcome) : " + user);
@@ -116,13 +117,13 @@ class Wellcome extends framework.component {
 
                 "click",
                 function() {
-                    current_user = {
-                        fistname: "",
-                        username: "",
-                        lastname: "",
-                        password: "",
-                        mail: "",
-                    };
+                    /*        current_user = {
+                               fistname: "",
+                               username: "",
+                               lastname: "",
+                               password: "",
+                               mail: "",
+                           }; */
 
                     app.modelservice$.publish("status", app.EnumPages.Login);
                     //VisibilityState();
