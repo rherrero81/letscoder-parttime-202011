@@ -4,7 +4,7 @@
     "private": true,
     "main": "src/App.js",
     "dependencies": {
-
+        "app-logic": "file:../app-logic",
         "node-sass": "^4.14.1",
         "tsc-watch": "^4.2.9",
         "typescript": "^4.0.3"

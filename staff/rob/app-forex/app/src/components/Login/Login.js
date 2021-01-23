@@ -1,4 +1,5 @@
 import logic from '../../logic/index.js';
+const logic2 = require(['app-logic'])
 import framework from '../../utils/index.js';
 import app from '../../app.js';
 
