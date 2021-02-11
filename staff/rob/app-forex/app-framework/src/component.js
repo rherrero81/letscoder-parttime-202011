@@ -1,18 +1,19 @@
- import utils from './components.utils.js';
- import framework from '../utils/index.js'
+ import framework from '../index.js';
+
  class HTMLComponent extends HTMLElement {
+
      connectedCallback() {
          /*called when the element is 
                                      connected to the page.
                                      This can be called multiple 
                                      times during the element's lifecycle. for example when using drag&drop to move elements around */
          this.Onload();
-         if (this.url) utils.loadCSS("." + this.url + "template.css")
+         if (this.url) framework.utils.loadCSS("." + this.url + "template.css")
      }
      disconnectedCallback() {
 
          if (this.url)
-             utils.unLoadCSS(this.url + "template.css");
+             framework.utils.unLoadCSS(this.url + "template.css");
          this.OnUnload();
      }
 
@@ -22,7 +23,7 @@
 
      renderTemplate() {
          let that = this;;
-         framework.render.checkElementTabs(framework.render, that, that);
+         framework.render.checkElementTabs(framework.render, that, that, this.app);
          //bind en vez de this
      }
 

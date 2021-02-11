@@ -11,14 +11,15 @@
         width: 100vw;
         height: 100vh;
         object-fit: cover;
-        /* or object-fit: contain; */
     }
-    /*     .login_background::before {
-        content: "";
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        background-color: rgba(0, 0, 0, 0.15);
-    } */
+    
+    .label--title-app {
+        color: black !important;
+        font-weight: bold;
+        font-size: 50px;
+    }
+    
+    .label--title-app img {
+        width: 40px;
+        height: 40px;
+    }

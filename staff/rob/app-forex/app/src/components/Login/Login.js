@@ -1,5 +1,6 @@
-import logic from '/app/node_modules/app-logic/index.js';
-import framework from '../../utils/index.js';
+import logic from '/app/node_modules/app-logic/index.js';;
+/* import framework from '/app/node_modules/app-framework/index.js'; */
+import framework from '/app/node_modules/app-framework/index.js';
 import app from '../../app.js';
 
 class Log_In extends framework.component {
@@ -61,6 +62,7 @@ class Log_In extends framework.component {
 
 
     Onload() {
+        this.app = app;
         let that = this;
         let template_url = "." + that.url +
             "template.html";

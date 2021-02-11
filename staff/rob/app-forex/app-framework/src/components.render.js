@@ -1,19 +1,19 @@
 ///*VJ: Binding
 /////////////////////////
-import app from '../app.js';
-const checkElementTabs = (that, root, element) => {
+
+const checkElementTabs = (that, root, element, app) => {
     let newnodes = document.createDocumentFragment();
     for (let item of element.children) {
-        if (item.children) that.checkElementTabs(that, root, item);
+        if (item.children) that.checkElementTabs(that, root, item, app);
         //BIND MODEL *vjmodel=model
-        that.bindModel(that, root, item, newnodes);
+        that.bindModel(that, root, item, newnodes, app);
 
         //BIND EVENTS *vj:{event}
-        that.bindEvents(that, root, item, {});
+        that.bindEvents(that, root, item, {}, app);
 
 
         //BIND variables
-        that.bindVariables(that, root, item);
+        that.bindVariables(that, root, item, app);
 
 
 
@@ -21,7 +21,7 @@ const checkElementTabs = (that, root, element) => {
     }
 }
 
-const bindModel = (that, root, item, newnodes) => {
+const bindModel = (that, root, item, newnodes, app) => {
     if (item.attributes["*vjmodel"]) {
         let modelname = item.attributes["*vjmodel"].value;
         let ss;
@@ -54,7 +54,7 @@ const bindModel = (that, root, item, newnodes) => {
 
 }
 
-const bindEvents = (that, root, item, model) => {
+const bindEvents = (that, root, item, model, app) => {
     let events = Array.from(item.attributes).filter(
         (c) => c.localName.indexOf("*vj:") != -1
     );
@@ -80,7 +80,7 @@ const bindEvents = (that, root, item, model) => {
 }
 
 
-const bindVariables = (that, root, item) => {
+const bindVariables = (that, root, item, app) => {
     if (item.innerHTML.indexOf('{{') != -1 && !item.attributes["*vjmodel"] && !item.parentElement.attributes["*vjmodel"]) {
         let re = /{{[a-zA-Z_]*}}/gi;
 

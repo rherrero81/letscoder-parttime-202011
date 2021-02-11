@@ -1,7 +1,5 @@
- ;
- import framework from './utils/index.js';
- import components from './components/index.js';
-
+ import framework from '/app/node_modules/app-framework/index.js';
+ import Components from './components/index.js';
  var pages = [];
  const EnumPages = {
      Login: 0,

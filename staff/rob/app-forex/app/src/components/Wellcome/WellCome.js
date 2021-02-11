@@ -1,5 +1,6 @@
-import logic from '../../logic/index.js';
-import framework from '../../utils/index.js';
+import logic from '/app/node_modules/app-logic/index.js';;
+/* import framework from '/app/node_modules/app-framework/src/index.js' */
+import framework from '/app/node_modules/app-framework/index.js';
 import app from '../../app.js';
 class Wellcome extends framework.component {
     get ContainerElement() {
@@ -61,6 +62,7 @@ class Wellcome extends framework.component {
 
 
     Onload() {
+        this.app = app;
         //let template_url = 'http://localhost:3030/api/v1/template?q=wellcome';
         let template_url = "./components/Wellcome/template.html";
         let that = this;

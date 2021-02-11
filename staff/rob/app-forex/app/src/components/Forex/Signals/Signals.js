@@ -1,6 +1,7 @@
-import logic from '/app/node_modules/app-logic/index.js';
-import framework from '../../../utils/index.js';
-import app from '../../../app.js';
+import logic from '/app/node_modules/app-logic/index.js';;
+/* import framework from '/app/node_modules/app-framework/src/index.js' */
+import framework from '/app/node_modules/app-framework/index.js';
+import app from '../../../app.js';;
 class Signals extends framework.component {
     get ContainerElement() {
         if (app.templates["./components/Forex/Signals/template.html"]) {
@@ -29,6 +30,7 @@ class Signals extends framework.component {
     }
 
     Onload() {
+        this.app = app;
         let that = this;
         app.modelservice$.subscribe('selOperationSignal', op => {
             that.signals = [];
